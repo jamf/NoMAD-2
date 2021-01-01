@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Version</key>
+	<integer>1</integer>
+	<key>MenuIcon</key>
+	<true/>
+	<key>Actions</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>update test</string>
+			<key>Connected</key>
+			<true/>
+			<key>Title</key>
+			<dict>
+				<key>Command</key>
+				<string>path</string>
+				<key>CommandOptions</key>
+				<string>/bin/cat /tmp/titleText</string>
+			</dict>
+			<key>Show</key>
+			<array>
+				<dict>
+					<key>Command</key>
+					<string>ping</string>
+					<key>CommandOptions</key>
+					<string>www.apple.com</string>
+				</dict>
+			</array>
+			<key>Action</key>
+			<array>
+				<dict>
+					<key>Command</key>
+					<string>path</string>
+					<key>CommandOptions</key>
+					<string>/usr/bin/touch /tmp/action</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>non-working ping test</string>
+			<key>ToolTip</key>
+			<string>This is a ping test</string>
+			<key>Title</key>
+			<dict>
+				<key>Command</key>
+				<string>ping</string>
+				<key>CommandOptions</key>
+				<string>dc1.nomad.test</string>
+			</dict>
+			<key>Action</key>
+			<array>
+				<dict>
+					<key>Command</key>
+					<string>path</string>
+					<key>CommandOptions</key>
+					<string>/usr/bin/touch /tmp/action1</string>
+				</dict>
+			</array>
+			<key>Post</key>
+			<array>
+				<dict>
+					<key>Command</key>
+					<string>alert</string>
+					<key>CommandOptions</key>
+					<string>This is just a test</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Working ping test</string>
+			<key>Show</key>
+			<array>
+				<dict>
+					<key>Command</key>
+					<string>ping</string>
+					<key>CommandOptions</key>
+					<string>www.apple.com</string>
+				</dict>
+			</array>
+			<key>Action</key>
+			<array>
+				<dict>
+					<key>Command</key>
+					<string>path</string>
+					<key>CommandOptions</key>
+					<string>/bin/cat /tmp/titleText</string>
+				</dict>
+			</array>
+			<key>Post</key>
+			<array>
+				<dict>
+					<key>Command</key>
+					<string>alert</string>
+					<key>CommandOptions</key>
+					<string>&lt;&lt;result&gt;&gt;</string>
+				</dict>
+				<dict>
+					<key>Command</key>
+					<string>notify</string>
+					<key>CommandOptions</key>
+					<string>Notification test</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>separator</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Just a message</string>
+		</dict>
+	</array>
+</dict>
+</plist>

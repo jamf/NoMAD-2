@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<plist version="1.0">
+    <dict>
+        <key>PayloadIdentifier</key>
+        <string>3F582660-336D-4C51-BBF0-7361B93A9B49</string>
+        <key>PayloadDisplayName</key>
+        <string>NoMAD 2 SSOE</string>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadRemovalDisallowed</key>
+        <true/>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>Hosts</key>
+                <array>
+                    <string>.nomad.menu</string>
+                </array>
+                <key>PayloadIdentifier</key>
+                <string>45F4C500-883B-4E55-9FDA-9F8A9BCD2909</string>
+                <key>Realm</key>
+                <string>NOMAD.MENU</string>
+                <key>ExtensionIdentifier</key>
+                <string>menu.nomad.nomad.nomadssoe</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>PayloadType</key>
+                <string>com.apple.extensiblesso</string>
+                <key>PayloadUUID</key>
+                <string>45F4C500-883B-4E55-9FDA-9F8A9BCD2909</string>
+                <key>TeamIdentifier</key>
+                <string>VRPY9KHGX6</string>
+                <key>PayloadDisplayName</key>
+                <string>Single Sign-On Extensions Payload</string>
+                <key>URLs</key>
+                <array/>
+                <key>Type</key>
+                <string>Credential</string>
+                <key>PayloadOrganization</key>
+                <string>JAMF Software</string>
+            </dict>
+        </array>
+        <key>PayloadOrganization</key>
+        <string>NoMAD 2</string>
+        <key>PayloadEnabled</key>
+        <true/>
+        <key>PayloadDescription</key>
+        <string></string>
+        <key>PayloadUUID</key>
+        <string>3F582660-336D-4C51-BBF0-7361B93A9B49</string>
+    </dict>
+</plist>

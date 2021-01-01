@@ -1,0 +1,17 @@
+//  Copyright © 2018 Orchard & Grove Inc. All rights reserved.
+
+module NoMADPRIVATE {
+    // Common Crypto
+    
+    //header "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include/CommonCrypto/CommonCrypto.h"
+    //link "CommonCrypto"
+
+    // DNS Tools
+    header "DNSResolver.h"
+    
+    // Kerb bits
+    header "KerbUtil.h"
+    header "GSSItem.h"
+    header "krb5.h"
+    export *
+}

@@ -1,0 +1,11 @@
+framework module NoMAD_ADAuth {
+  umbrella header "NoMAD_ADAuth.h"
+
+  export *
+  module * { export * }
+}
+
+module NoMAD_ADAuth.Swift {
+    header "NoMAD_ADAuth-Swift.h"
+    requires objc
+}

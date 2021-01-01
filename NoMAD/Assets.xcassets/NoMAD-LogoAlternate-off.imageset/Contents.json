@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "NoMAD-LogoAlternate No Check 16.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "NoMAD-LogoAlternate No Check 24.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "NoMAD-LogoAlternate No Check 32.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,9 @@
+stages:
+  - build
+
+
+build_project:
+  stage: build
+  script:
+    - xcodebuild clean -project NoMAD-ADAuth.xcodeproj -scheme NoMAD-ADAuth | xcpretty
+    - xcodebuild test -project NoMAD-ADAuth.xcodeproj -scheme NoMAD-ADAuth | xcpretty -s

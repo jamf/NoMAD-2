@@ -1,0 +1,6 @@
+framework module TCSCertificateRequest {
+  umbrella header "TCSCertificateRequest.h"
+
+  export *
+  module * { export * }
+}
