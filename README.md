@@ -29,14 +29,36 @@ Most of NoMAD 2 is focused on code cleanup and modernization with a particular f
 
 NoMAD 2 provides a Credential SSOE for macOS 10.15 and above. This means that if you attempt to load a webpage that requires Kerberos authentication, and you have the proper configuration profile in place, but you don't have a ticket for the realm you are connecting to, you'll see the NoMAD 2 authentication window.
 
-To achieve this you'll need to push a configuration profile via MDM with two items configured:
+To achieve this you'll need to push a configuration profile via MDM with at least these two items:
 
 - `menu.nomad.nomad.nomadssoe` for the Extension bundle ID
 - `VRPY9KHGX6` as the Team Identifier
 
+Also add the Kerberos Realm and any URLs you want to trigger on to the profile.
+
 You can find a sample version of the profile in the NoMAD repo.
 
-And then install a signed copy of NoMAD 2.
+The Team ID assumes you're using a signed copy of NoMAD 2. If you build the project yourself, your Team ID will be different.
+
+## macOS Versions
+
+NoMAD will working on macOS 10.14 and greater. You'll need at least 10.15 for the Single Sign On Extension. Current betas may work on older versions, but don't expect that to last.
+
+## Philosophical Questions
+
+With NoMAD 2 being able to support multiple tickets, and many users not really using Kerberos other than changing their password on occasion... the typical user flow through the app will most likely be a bit different now than it was in the past.
+
+As such we plan on tweaking some of the NoMAD behavior to better reflect modern workflows.
+
+## Defaults
+
+A few changes to how NoMAD 2 handles preferences.
+
+The major one is that it's a new pref domain: `menu.nomad.nomad`
+
+All app preferences will go there. Anything that will change, such as user information, password expirations and the rest, will go into `menu.nomad.state` so that it's quite clear which preferences are changing and which aren't.
+
+Other than that, we're attempting to keep the preferences as similar as possible.
 
 ## Building NoMAD 2
 
@@ -47,6 +69,20 @@ The AD Framework requires some ObjC code which prevents it from being a Swift Pa
 ## What's the current progress
 
 At this point NoMAD 2 would be best characterized as an early beta. AD auth and getting the user record works. The SSOE is working. Accounts and passwords can be saved and used. Much of the previous NoMAD preference keys for customizing the menu also work.
+
+File shares, localization, local password sync, password changes, and custom logos, to name some major things, are not wired up yet.
+
+## Contributing
+
+Community feedback, participation and code are all greatly encouraged and appreciated. NoMAD 1.x was a bit duanting to get into as the code was more than a bit "meandering" plus some other unconventional practices had been used. To help flush out the past, and to make things just generally more sane, that's why we have a brand new repo and a modern code base.
+
+Feature requests, bugs and other items can be tracked here in this repo, and we promise to be much more organzied about these things this time around.
+
+## Current builds
+
+You can find the latest releases on the Tags page.
+
+https://gitlab.com/Mactroll/nomad2/-/tags
 
 ### Jan 1, 2021
 
