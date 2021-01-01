@@ -52,7 +52,6 @@
 		600A895524AC73F300E2051C /* GlobalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600A895424AC73F300E2051C /* GlobalVars.swift */; };
 		600A895824AC749D00E2051C /* AuthUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600A895724AC749D00E2051C /* AuthUI.swift */; };
 		60A5AE8E24AB776D00DD328A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5AE8D24AB776D00DD328A /* AppDelegate.swift */; };
-		60A5AE9024AB776D00DD328A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5AE8F24AB776D00DD328A /* ContentView.swift */; };
 		60A5AE9224AB776F00DD328A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60A5AE9124AB776F00DD328A /* Assets.xcassets */; };
 		60A5AE9524AB776F00DD328A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60A5AE9424AB776F00DD328A /* Preview Assets.xcassets */; };
 		60A5AE9824AB776F00DD328A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60A5AE9624AB776F00DD328A /* Main.storyboard */; };
@@ -805,7 +804,6 @@
 				60A5AF3124AC46C400DD328A /* PreferencesWindow.swift in Sources */,
 				60A5AEC524AB83F500DD328A /* PrefKeys.swift in Sources */,
 				5BF41841251EE3E500E45B72 /* KeychainUtil.swift in Sources */,
-				60A5AE9024AB776D00DD328A /* ContentView.swift in Sources */,
 				5BF4183F251DC66C00E45B72 /* String.swift in Sources */,
 				60A5AF0E24ABDD9200DD328A /* GetHelp.swift in Sources */,
 				60A5AF1A24AC231800DD328A /* ActionsMenuItem.swift in Sources */,
@@ -1086,7 +1084,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.nomad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1120,7 +1118,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.nomad;
 				PRODUCT_NAME = "$(TARGET_NAME)";

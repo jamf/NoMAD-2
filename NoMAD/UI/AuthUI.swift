@@ -128,7 +128,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
             }
         } else {
             for account in nomadAccounts {
-                if account.displayName == self.accountsList.selectedItem?.title.replacingOccurrences(of: " •", with: ""),
+                if account.displayName == self.accountsList.selectedItem?.title.replacingOccurrences(of: " ◀︎", with: ""),
                    let domain = account.upn.userDomain() {
                     self.session = NoMADSession.init(domain: domain, user: account.upn.user())
                     session?.setupSessionFromPrefs(prefs: prefs)
@@ -212,7 +212,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         }
         
         for account in nomadAccounts {
-            if account.displayName == self.accountsList.selectedItem?.title {
+            if account.displayName == self.accountsList.selectedItem?.title.replacingOccurrences(of: " ◀︎", with: "") {
                 if account.keychain {
                     let keyUtil = KeychainUtil()
                     do {
