@@ -1,6 +1,6 @@
 #  NoMAD 2
 
-A complete ground-up rewrite of NoMAD utilizing the same AD Auth Framework foundin NoMAD Login.
+A complete ground-up rewrite of NoMAD utilizing the same AD Auth Framework found in NoMAD Login.
 
 ## Why?
 
@@ -8,11 +8,11 @@ Well... that's a good question.
 
 NoMAD 1.x hasn't seen a lot of updates in the last few years. A lot of this is because Active Directory itself hasn't changed much. Also, with the introduction of Apple's improved Kerberos SSO Extension there was a hope that NoMAD's time had perhaps passed.
 
-However, after watching the number of people in #nomad Slack channel increase and continued usage of the product, it started becomming more clear that the time had perhaps come to do a major rework of the code base to allow for modernization.
+However, after watching the number of people in #nomad Slack channel increase and continued usage of the product, it started becoming more clear that the time had perhaps come to do a major rework of the code base to allow for modernization.
 
-While many organziations won't get much use out of the new features, everyone should be able to benefit from a much improved code base which should finally put to bed some long suffering NoMAD "features" like not checking for tickets on first launch.
+While many organizations won't get much use out of the new features, everyone should be able to benefit from a much improved code base which should finally put to bed some long suffering NoMAD "features" like not checking for tickets on first launch.
 
-Even with Apple's included Kerberos apps, there's still a significant need to allow for customization of the user experience. Either through allowing the use of logos and custom titles for menu, or full on customization of the application's behavior. NoMAD 2 provides this.
+Even with Apple's included Kerberos apps, there's still a significant need to allow for customization of the user experience — either through allowing the use of logos and custom titles for menu, or full on customization of the application's behavior. NoMAD 2 provides this.
 
 Plus for anyone looking to learn Swift and how it might help with administration tasks, this code will be much less infuriating to try and decipher and perhaps reuse in your own projects.
 
@@ -42,7 +42,7 @@ The Team ID assumes you're using a signed copy of NoMAD 2. If you build the proj
 
 ## macOS Versions
 
-NoMAD will working on macOS 10.14 and greater. You'll need at least 10.15 for the Single Sign On Extension. Current betas may work on older versions, but don't expect that to last.
+NoMAD will work on macOS 10.14 and greater. You'll need at least 10.15 for the Single Sign On Extension. Current betas may work on older versions, but don't expect that to last.
 
 ## Philosophical Questions
 
@@ -74,9 +74,9 @@ File shares, localization, local password sync, password changes, and custom log
 
 ## Contributing
 
-Community feedback, participation and code are all greatly encouraged and appreciated. NoMAD 1.x was a bit duanting to get into as the code was more than a bit "meandering" plus some other unconventional practices had been used. To help flush out the past, and to make things just generally more sane, that's why we have a brand new repo and a modern code base.
+Community feedback, participation and code are all greatly encouraged and appreciated. NoMAD 1.x was a bit daunting to get into as the code was more than a bit "meandering" plus some other unconventional practices had been used. To help flush out the past, and to make things just generally more sane, that's why we have a brand new repo and a modern code base.
 
-Feature requests, bugs and other items can be tracked here in this repo, and we promise to be much more organzied about these things this time around.
+Feature requests, bugs and other items can be tracked here in this repo, and we promise to be much more organized about these things this time around.
 
 ## Current builds
 
