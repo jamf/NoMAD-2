@@ -50,7 +50,7 @@
                         </textFieldCell>
                     </textField>
                     <button identifier="UseKeychain" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fuH-hz-11s">
-                        <rect key="frame" x="18" y="46" width="142" height="18"/>
+                        <rect key="frame" x="122" y="138" width="142" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Use Keychain" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7Oh-A9-P92">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -58,17 +58,6 @@
                         </buttonCell>
                         <connections>
                             <binding destination="bcB-Up-qaA" name="value" keyPath="values.UseKeychain" id="dfD-S0-zmL"/>
-                        </connections>
-                    </button>
-                    <button identifier="ShowHome" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oH0-Xw-3nC">
-                        <rect key="frame" x="191" y="46" width="183" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Show Home Folder" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wDv-Uk-9vU">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <binding destination="bcB-Up-qaA" name="value" keyPath="values.ShowHome" id="6De-7S-gwB"/>
                         </connections>
                     </button>
                     <textField identifier="SecondsToRenew" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ai-OG-Wah">
@@ -123,6 +112,17 @@
                         </buttonCell>
                         <connections>
                             <binding destination="bcB-Up-qaA" name="value" keyPath="values.SingleUserMode" id="L5T-q5-B0K"/>
+                        </connections>
+                    </button>
+                    <button identifier="ShowHome" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oH0-Xw-3nC">
+                        <rect key="frame" x="122" y="116" width="183" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Show Home Folder" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wDv-Uk-9vU">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="bcB-Up-qaA" name="value" keyPath="values.ShowHome" id="6De-7S-gwB"/>
                         </connections>
                     </button>
                 </subviews>

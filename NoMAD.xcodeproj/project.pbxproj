@@ -18,6 +18,7 @@
 		1A93F77625A264A20024C90F /* SRVResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F77525A264A20024C90F /* SRVResolver.swift */; };
 		1A93F77C25A264B10024C90F /* SRVRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F77B25A264B10024C90F /* SRVRecord.swift */; };
 		1A93F78025A264EF0024C90F /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F77F25A264EF0024C90F /* AccountsManager.swift */; };
+		1A93F78625A2A0E40024C90F /* DomainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F78525A2A0E40024C90F /* DomainManager.swift */; };
 		5B17475C259D39A700C6085C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B17475B259D39A700C6085C /* AuthenticationServices.framework */; };
 		5B17475F259D39A700C6085C /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B17475E259D39A700C6085C /* AuthenticationViewController.swift */; };
 		5B174762259D39A700C6085C /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B174760259D39A700C6085C /* AuthenticationViewController.xib */; };
@@ -174,6 +175,7 @@
 		1A93F77525A264A20024C90F /* SRVResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRVResolver.swift; sourceTree = "<group>"; };
 		1A93F77B25A264B10024C90F /* SRVRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRVRecord.swift; sourceTree = "<group>"; };
 		1A93F77F25A264EF0024C90F /* AccountsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsManager.swift; sourceTree = "<group>"; };
+		1A93F78525A2A0E40024C90F /* DomainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainManager.swift; sourceTree = "<group>"; };
 		5B17475A259D39A700C6085C /* nomadssoe.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = nomadssoe.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B17475B259D39A700C6085C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		5B17475E259D39A700C6085C /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				1A93F77F25A264EF0024C90F /* AccountsManager.swift */,
+				1A93F78525A2A0E40024C90F /* DomainManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				1A93F694259A5B5F0024C90F /* PKINIT.swift in Sources */,
 				60A5AF1C24AC233D00DD328A /* NoMADActionCommands.swift in Sources */,
 				60A5AEC024AB7A5C00DD328A /* StatusBarItem.swift in Sources */,
+				1A93F78625A2A0E40024C90F /* DomainManager.swift in Sources */,
 				60A5AEF024ABBED800DD328A /* PasswordPolicy.swift in Sources */,
 				1A93F77625A264A20024C90F /* SRVResolver.swift in Sources */,
 				60A5AE8E24AB776D00DD328A /* AppDelegate.swift in Sources */,
