@@ -16,7 +16,15 @@ class SignInMenuItem: NSMenuItem {
     
     override var isHidden: Bool {
         get {
-            prefs.bool(for: PrefKeys.hideSignIn)
+            if prefs.bool(for: PrefKeys.hideSignIn) {
+                return true
+            } else if prefs.bool(for: .singleUserMode) {
+                let klist = KlistUtil()
+                if klist.klist().count > 0 {
+                    return true
+                }
+            }
+            return false
         }
         set {
             return

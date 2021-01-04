@@ -139,6 +139,7 @@ enum PrefKeys: String, CaseIterable {
     case signInWindowOnLaunchExclusions = "SignInWindowOnLaunchExclusions"
     case signedIn = "SignedIn"
     case signOutCommand = "SignOutCommand"
+    case singleUserMode = "SingleUserMode"
     case siteIgnore = "SiteIgnore"
     case siteForce = "SiteForce"
     case slowMount = "SlowMount"

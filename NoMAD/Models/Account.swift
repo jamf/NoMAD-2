@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NoMADAccount: Codable {
+struct NoMADAccount: Codable, Equatable {    
     var displayName: String
     var upn: String
     var keychain: Bool

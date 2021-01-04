@@ -15,7 +15,7 @@ class AccountsMenuItem: NSMenuItem {
     
     override var isHidden: Bool {
         get {
-            prefs.bool(for: PrefKeys.hideAccounts)
+            prefs.bool(for: PrefKeys.hideAccounts) || prefs.bool(for: .singleUserMode)
         }
         set {
             return

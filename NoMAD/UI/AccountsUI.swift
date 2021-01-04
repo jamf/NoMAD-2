@@ -12,7 +12,6 @@ import Cocoa
 class AccountsUI: NSWindowController, NSWindowDelegate {
     
     var prefs = PrefManager()
-    var accounts = [NoMADAccount]()
     var observer: NSKeyValueObservation?
     
     enum ButtonType {
@@ -29,79 +28,52 @@ class AccountsUI: NSWindowController, NSWindowDelegate {
     }
     
     override func windowDidLoad() {
-        loadAccounts()
+        AccountsManager.shared.delegates.append(self)
         accountTable.delegate = self
         accountTable.dataSource = self
         accountTable.reloadData()
         certButton.isHidden = !PKINIT.shared.cardInserted
         PKINIT.shared.delegates.append(self)
-        observer = UserDefaults.standard.observe(\.Accounts, options: [.initial, .new], changeHandler: { defaults, change in
-            print("Accounts changed, reloading")
-            self.reload()
-        })
     }
     
     func windowWillClose(_ notification: Notification) {
         mainMenu.accountsUI = nil
-        saveAccounts()
-    }
-    
-    private func loadAccounts() {
-        let decoder = PropertyListDecoder.init()
-        if let accountsData = prefs.data(for: .accounts),
-           let accountsList = try? decoder.decode(NoMADAccounts.self, from: accountsData) {
-            accounts = accountsList.accounts
-        }
-    }
-    
-    private func saveAccounts() {
-        let encoder = PropertyListEncoder.init()
-        if let accountData = try? encoder.encode(NoMADAccounts.init(accounts: accounts))  {
-            prefs.set(for: .accounts, value: accountData)
-            prefs.sharedDefaults?.setValue(accountData, forKey: PrefKeys.accounts.rawValue)
-        }
     }
     
     @IBAction func addRow(_ sender: Any) {
-        accounts.append(NoMADAccount(displayName: "", upn: "", keychain: false, automatic: false))
-        accountTable.reloadData()
+        AccountsManager.shared.accounts.append(NoMADAccount(displayName: "", upn: "", keychain: false, automatic: false))
+        AccountsManager.shared.saveAccounts()
     }
     
     @IBAction func removeRow(_ sender: Any) {
-        if accountTable.selectedRow > 0 {
-            accounts.remove(at: accountTable.selectedRow - 1)
+        if accountTable.selectedRow > -1 {
+            AccountsManager.shared.accounts.remove(at: accountTable.selectedRow)
         }
-        accountTable.reloadData()
+        AccountsManager.shared.saveAccounts()
     }
     
     @IBAction func editDisplayName(_ sender: NSTextField) {
         guard accountTable.selectedRow > -1 else { return }
-        accounts[accountTable.selectedRow].displayName = sender.stringValue
+        AccountsManager.shared.accounts[accountTable.selectedRow].displayName = sender.stringValue
+        AccountsManager.shared.saveAccounts()
     }
     
     @IBAction func editUPN(_ sender: NSTextField) {
         guard accountTable.selectedRow > -1 else { return }
-        accounts[accountTable.selectedRow].upn = sender.stringValue
+        AccountsManager.shared.accounts[accountTable.selectedRow].upn = sender.stringValue
+        AccountsManager.shared.saveAccounts()
     }
-    
-    @objc private func reload() {
-        loadAccounts()
-        RunLoop.main.perform {
-            self.accountTable.reloadData()
-        }
-    }
-
 }
 
 extension AccountsUI: NSTableViewDelegate, NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        accounts.count
+        AccountsManager.shared.accounts.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        let user = accounts[row]
+        let user = AccountsManager.shared.accounts[row]
         
         if let column = tableColumn {
             if let cellView = tableView.makeView(withIdentifier: column.identifier, owner: self) as? NSTableCellView  {
@@ -150,14 +122,14 @@ extension AccountsUI: NSTableViewDelegate, NSTableViewDataSource {
     
     @objc func toggleKeychain(_ sender: NSButton) {
         print("changing row: \(sender.tag.description) and column: keychain")
-        accounts[sender.tag].keychain.toggle()
-        saveAccounts()
+        AccountsManager.shared.accounts[sender.tag].keychain.toggle()
+        AccountsManager.shared.saveAccounts()
     }
     
     @objc func toggleAutomatic(_ sender: NSButton) {
         print("changing row: \(sender.tag.description) and column: auto")
-        accounts[sender.tag].automatic.toggle()
-        saveAccounts()
+        AccountsManager.shared.accounts[sender.tag].automatic.toggle()
+        AccountsManager.shared.saveAccounts()
     }
     
     func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
@@ -165,13 +137,13 @@ extension AccountsUI: NSTableViewDelegate, NSTableViewDataSource {
         guard let text = object as? String else { return }
         switch tableColumn?.identifier.rawValue {
         case "display":
-            accounts[row].displayName = text
+            AccountsManager.shared.accounts[row].displayName = text
         case "upn":
-            accounts[row].upn = text
+            AccountsManager.shared.accounts[row].upn = text
         default:
             print("other change")
         }
-        saveAccounts()
+        AccountsManager.shared.saveAccounts()
     }
 }
 
@@ -179,6 +151,15 @@ extension AccountsUI: PKINITCallbacks {
     func cardChange() {
         RunLoop.main.perform {
             self.certButton.isHidden = !PKINIT.shared.cardInserted
+        }
+    }
+}
+
+extension AccountsUI: AccountUpdate {
+    
+    func updateAccounts(accounts: [NoMADAccount]) {
+        RunLoop.main.perform {
+            self.accountTable.reloadData()
         }
     }
 }

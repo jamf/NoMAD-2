@@ -12,10 +12,8 @@
                 <outlet property="RenewTickets" destination="gA7-HJ-fUd" id="eqt-Zs-n03"/>
                 <outlet property="SecondsToRenew" destination="1ai-OG-Wah" id="SDP-nn-ncN"/>
                 <outlet property="ShowHome" destination="oH0-Xw-3nC" id="TGj-UG-cRH"/>
-                <outlet property="TemplateField" destination="SZh-mW-1dk" id="s5Z-o6-unH"/>
                 <outlet property="UseKeychain" destination="fuH-hz-11s" id="Pfn-0m-gVc"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
-                <outlet property="x509CAField" destination="CFh-rv-70X" id="3s0-8x-QO9"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -40,48 +38,6 @@
                         </textFieldCell>
                         <connections>
                             <binding destination="bcB-Up-qaA" name="value" keyPath="values.ADDomain" id="SHb-qq-g55"/>
-                        </connections>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GR5-zh-rHp">
-                        <rect key="frame" x="18" y="144" width="100" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="x509 CA" id="owP-RF-Kec">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField identifier="X509CA" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CFh-rv-70X">
-                        <rect key="frame" x="124" y="142" width="248" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="optional" drawsBackground="YES" id="saW-aa-BZg">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="bcB-Up-qaA" name="value" keyPath="values.X509CA" id="cmn-hI-3V7"/>
-                        </connections>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RPm-NT-ZhG">
-                        <rect key="frame" x="28" y="84" width="90" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Template" id="Kes-CY-FXH">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField identifier="Template" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZh-mW-1dk">
-                        <rect key="frame" x="124" y="82" width="248" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="optional" drawsBackground="YES" id="tno-bN-cMD">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="bcB-Up-qaA" name="value" keyPath="values.Template" id="irp-2p-cd4"/>
                         </connections>
                     </textField>
                     <textField toolTip="The name of your AD Domain." horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZGq-je-gSa">
@@ -147,27 +103,28 @@
                             <binding destination="bcB-Up-qaA" name="value" keyPath="values.RenewTickets" id="7JM-st-KfU"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4gJ-AI-CMO">
-                        <rect key="frame" x="124" y="112" width="248" height="22"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2md-SI-0I2">
+                        <rect key="frame" x="122" y="182" width="250" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="optional" drawsBackground="YES" id="8sM-wQ-Z0y">
+                        <buttonCell key="cell" type="check" title="Automatically add accounts" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="UmX-MY-IbL">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
+                        </buttonCell>
                         <connections>
-                            <binding destination="bcB-Up-qaA" name="value" keyPath="values.X509Name" id="yho-wQ-vn3"/>
+                            <binding destination="bcB-Up-qaA" name="value" keyPath="values.AutoAddAccounts" id="bNM-KQ-5Yb"/>
                         </connections>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nzi-rL-FgR">
-                        <rect key="frame" x="18" y="112" width="100" height="17"/>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HjV-ND-zke">
+                        <rect key="frame" x="122" y="160" width="250" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="x509 Name" id="j0o-Iw-MZ2">
+                        <buttonCell key="cell" type="check" title="Single User Mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wrh-2c-Xlo">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="bcB-Up-qaA" name="value" keyPath="values.SingleUserMode" id="L5T-q5-B0K"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>

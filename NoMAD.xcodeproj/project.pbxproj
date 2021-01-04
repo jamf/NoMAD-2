@@ -15,6 +15,9 @@
 		1A93F694259A5B5F0024C90F /* PKINIT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A38B34B259A4B9E0043DE1C /* PKINIT.swift */; };
 		1A93F714259E2A320024C90F /* SignOutMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F713259E2A320024C90F /* SignOutMenuItem.swift */; };
 		1A93F718259E65760024C90F /* HomeFolderMenuitem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F717259E65760024C90F /* HomeFolderMenuitem.swift */; };
+		1A93F77625A264A20024C90F /* SRVResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F77525A264A20024C90F /* SRVResolver.swift */; };
+		1A93F77C25A264B10024C90F /* SRVRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F77B25A264B10024C90F /* SRVRecord.swift */; };
+		1A93F78025A264EF0024C90F /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F77F25A264EF0024C90F /* AccountsManager.swift */; };
 		5B17475C259D39A700C6085C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B17475B259D39A700C6085C /* AuthenticationServices.framework */; };
 		5B17475F259D39A700C6085C /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B17475E259D39A700C6085C /* AuthenticationViewController.swift */; };
 		5B174762259D39A700C6085C /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B174760259D39A700C6085C /* AuthenticationViewController.xib */; };
@@ -62,7 +65,6 @@
 		60A5AEC324AB7E4200DD328A /* PrefManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5AEC224AB7E4200DD328A /* PrefManager.swift */; };
 		60A5AEC524AB83F500DD328A /* PrefKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5AEC424AB83F500DD328A /* PrefKeys.swift */; };
 		60A5AEC724ABB65F00DD328A /* NoMADMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5AEC624ABB65F00DD328A /* NoMADMenuItem.swift */; };
-		60A5AED524ABBE9900DD328A /* menu.nomad.NoMAD.shares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60A5AED024ABBE9800DD328A /* menu.nomad.NoMAD.shares.plist */; };
 		60A5AED624ABBE9900DD328A /* ShareMounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5AED124ABBE9900DD328A /* ShareMounter.swift */; };
 		60A5AED724ABBE9900DD328A /* ShareEditWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60A5AED224ABBE9900DD328A /* ShareEditWindow.xib */; };
 		60A5AED824ABBE9900DD328A /* ShareMounterMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5AED324ABBE9900DD328A /* ShareMounterMenu.swift */; };
@@ -169,6 +171,9 @@
 		1A93F713259E2A320024C90F /* SignOutMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutMenuItem.swift; sourceTree = "<group>"; };
 		1A93F717259E65760024C90F /* HomeFolderMenuitem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFolderMenuitem.swift; sourceTree = "<group>"; };
 		1A93F71F259FBA900024C90F /* NoMAD 2 SSOE Sample.mobileconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "NoMAD 2 SSOE Sample.mobileconfig"; sourceTree = "<group>"; };
+		1A93F77525A264A20024C90F /* SRVResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRVResolver.swift; sourceTree = "<group>"; };
+		1A93F77B25A264B10024C90F /* SRVRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRVRecord.swift; sourceTree = "<group>"; };
+		1A93F77F25A264EF0024C90F /* AccountsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsManager.swift; sourceTree = "<group>"; };
 		5B17475A259D39A700C6085C /* nomadssoe.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = nomadssoe.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B17475B259D39A700C6085C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		5B17475E259D39A700C6085C /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
@@ -315,6 +320,7 @@
 		1A38B2362595191B0043DE1C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				1A93F77F25A264EF0024C90F /* AccountsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -325,6 +331,15 @@
 				1A93F71F259FBA900024C90F /* NoMAD 2 SSOE Sample.mobileconfig */,
 			);
 			path = "Sample Configs";
+			sourceTree = "<group>";
+		};
+		1A93F77425A264930024C90F /* SRVLookups */ = {
+			isa = PBXGroup;
+			children = (
+				1A93F77525A264A20024C90F /* SRVResolver.swift */,
+				1A93F77B25A264B10024C90F /* SRVRecord.swift */,
+			);
+			path = SRVLookups;
 			sourceTree = "<group>";
 		};
 		5B17475D259D39A700C6085C /* nomadssoe */ = {
@@ -376,6 +391,7 @@
 		60A5AE8C24AB776D00DD328A /* NoMAD */ = {
 			isa = PBXGroup;
 			children = (
+				1A93F77425A264930024C90F /* SRVLookups */,
 				1A38B2362595191B0043DE1C /* Managers */,
 				5BF418712523B0FB00E45B72 /* Models */,
 				60A5AF2124AC433B00DD328A /* UI */,
@@ -736,7 +752,6 @@
 				60A5AED724ABBE9900DD328A /* ShareEditWindow.xib in Resources */,
 				5BF41843251EE4A100E45B72 /* AccountsUI.xib in Resources */,
 				5BF41833251D8BEA00E45B72 /* AuthUI.xib in Resources */,
-				60A5AED524ABBE9900DD328A /* menu.nomad.NoMAD.shares.plist in Resources */,
 				60A5AF2B24AC435700DD328A /* off.png in Resources */,
 				60A5AF2A24AC435700DD328A /* on.png in Resources */,
 				60A5AE9224AB776F00DD328A /* Assets.xcassets in Resources */,
@@ -802,6 +817,7 @@
 				1A38B2172592AC110043DE1C /* AutomaticSignIn.swift in Sources */,
 				60A5AF3324AC48A800DD328A /* PreferencesMenuItem.swift in Sources */,
 				60A5AF3124AC46C400DD328A /* PreferencesWindow.swift in Sources */,
+				1A93F78025A264EF0024C90F /* AccountsManager.swift in Sources */,
 				60A5AEC524AB83F500DD328A /* PrefKeys.swift in Sources */,
 				5BF41841251EE3E500E45B72 /* KeychainUtil.swift in Sources */,
 				5BF4183F251DC66C00E45B72 /* String.swift in Sources */,
@@ -815,6 +831,7 @@
 				60A5AF0324ABCC4300DD328A /* NoADError.swift in Sources */,
 				5BF41832251D8A0600E45B72 /* SignInMenuItem.swift in Sources */,
 				600A894D24AC65E000E2051C /* AboutMenuItem.swift in Sources */,
+				1A93F77C25A264B10024C90F /* SRVRecord.swift in Sources */,
 				60A5AF2024AC2F7C00DD328A /* URL.swift in Sources */,
 				60A5AF1824AC1B8F00DD328A /* NoMADMenuItemBase.swift in Sources */,
 				5BF4187725241C5900E45B72 /* TicketsMenuItem.swift in Sources */,
@@ -828,6 +845,7 @@
 				60A5AF1C24AC233D00DD328A /* NoMADActionCommands.swift in Sources */,
 				60A5AEC024AB7A5C00DD328A /* StatusBarItem.swift in Sources */,
 				60A5AEF024ABBED800DD328A /* PasswordPolicy.swift in Sources */,
+				1A93F77625A264A20024C90F /* SRVResolver.swift in Sources */,
 				60A5AE8E24AB776D00DD328A /* AppDelegate.swift in Sources */,
 				5BF41838251DB7ED00E45B72 /* KlistUtil.swift in Sources */,
 				60A5AEC324AB7E4200DD328A /* PrefManager.swift in Sources */,
@@ -913,6 +931,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.nomad.nomadssoe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -940,6 +959,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.nomad.nomadssoe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

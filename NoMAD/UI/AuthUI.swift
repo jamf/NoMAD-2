@@ -31,7 +31,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
     var persistantTimer: Timer?
     var helpURL: String?
     var prefs = PrefManager()
-    var nomadAccounts = [NoMADAccount]()
+    var certAccounts = [NoMADAccount]()
     
     var session: NoMADSession?
     
@@ -46,7 +46,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         buildAccountsMenu()
         accountsList.action = #selector(popUpChange)
         PKINIT.shared.delegates.append(self)
-        
+        AccountsManager.shared.delegates.append(self)
         NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.keyDown) {
             self.keyDown(with: $0)
             return $0
@@ -65,7 +65,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         case "c":
             if let currentUser = self.accountsList.selectedItem?.title,
                let certs = PKINIT.shared.returnCerts() {
-                for account in nomadAccounts {
+                for account in certAccounts {
                     if account.upn == currentUser || account.displayName == currentUser {
                         for cert in certs {
                             if account.pubkeyHash == cert.pubKeyHash {
@@ -86,7 +86,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         startOperations()
         
         if self.accountsList.isHidden {
-            self.session = NoMADSession.init(domain: self.prefs.string(for: .aDDomain) ?? "", user: self.userName.stringValue)
+            self.session = NoMADSession.init(domain: self.userName.stringValue.userDomain() ?? self.prefs.string(for: .aDDomain) ?? "", user: self.userName.stringValue)
             session?.setupSessionFromPrefs(prefs: prefs)
             session?.userPass = password.stringValue
             session?.delegate = self
@@ -96,7 +96,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         } else if PKINIT.shared.cardInserted {
             if let currentUser = self.accountsList.selectedItem?.title.replacingOccurrences(of: " ◀︎", with: ""),
                let certs = PKINIT.shared.returnCerts() {
-                for account in nomadAccounts {
+                for account in certAccounts {
                     if account.upn == currentUser || account.displayName == currentUser {
                         for cert in certs {
                             if account.pubkeyHash == cert.pubKeyHash {
@@ -127,7 +127,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
                 }
             }
         } else {
-            for account in nomadAccounts {
+            for account in AccountsManager.shared.accounts {
                 if account.displayName == self.accountsList.selectedItem?.title.replacingOccurrences(of: " ◀︎", with: ""),
                    let domain = account.upn.userDomain() {
                     self.session = NoMADSession.init(domain: domain, user: account.upn.user())
@@ -163,7 +163,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
             
             for cert in certs {
                 let account = NoMADAccount(displayName: cert.cn, upn: cert.principal ?? cert.cn, keychain: false, automatic: false, pubkeyHash: cert.pubKeyHash)
-                self.nomadAccounts.append(account)
+                self.certAccounts.append(account)
                 if tickets.contains(where: { $0.principal == cert.principal }) {
                     self.accountsList.addItem(withTitle: (cert.principal ?? cert.cn) + " ◀︎")
                 } else {
@@ -179,12 +179,9 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         }
         
         self.passwordLabel.stringValue = "Password"
-        let decoder = PropertyListDecoder.init()
-        if let accountsData = prefs.data(for: .accounts),
-           let storedAccountsList = try? decoder.decode(NoMADAccounts.self, from: accountsData) {
+        if AccountsManager.shared.accounts.count > 0 && !prefs.bool(for: .singleUserMode) {
             self.accountsList.removeAllItems()
-            self.nomadAccounts = storedAccountsList.accounts
-            for account in storedAccountsList.accounts {
+            for account in AccountsManager.shared.accounts {
                 if tickets.contains(where: { $0.principal.lowercased() == account.upn.lowercased()}) {
                     self.accountsList.addItem(withTitle: account.displayName + " ◀︎")
                 } else {
@@ -199,6 +196,20 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         }
         
         accountsList.isHidden = true
+        if let lastUser = prefs.string(for: .lastUser),
+           prefs.bool(for: .useKeychain) {
+            let keyUtil = KeychainUtil()
+            do {
+                try keyUtil.findPassword(lastUser.lowercased())
+                RunLoop.main.perform {
+                    self.password.stringValue = keyUtil.password
+                    keyUtil.scrub()
+                }
+                return
+            } catch {
+                print("Unable to get password")
+            }
+        }
     }
     
     @objc func popUpChange() {
@@ -211,7 +222,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
             return
         }
         
-        for account in nomadAccounts {
+        for account in AccountsManager.shared.accounts {
             if account.displayName == self.accountsList.selectedItem?.title.replacingOccurrences(of: " ◀︎", with: "") {
                 if account.keychain {
                     let keyUtil = KeychainUtil()
@@ -271,6 +282,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
     }
     
     private func showAlert(message: String) {
+        RunLoop.main.perform {
         let alert = NSAlert()
         
         var text = message
@@ -291,7 +303,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
             break
         }
         alert.messageText = text
-        RunLoop.main.perform {
+
             if let window = self.window {
                 alert.beginSheetModal(for: window, completionHandler: nil)
             }
@@ -308,26 +320,41 @@ extension AuthUI: NoMADUserSessionDelegate {
         RunLoop.main.perform {
             self.window?.title = "Getting User Information"
         }
-        for account in nomadAccounts {
-            if account.upn.lowercased() == session?.userPrincipal.lowercased(),
-               account.keychain {
-                let keyUtil = KeychainUtil()
-                RunLoop.main.perform {
-                    keyUtil.password = self.password.stringValue
-                    if keyUtil.updatePassword(account.upn.lowercased()) {
-                        print("Password updated in keychain")
+        session?.userInfo()
+        
+        if let principal = session?.userPrincipal {
+            if let account = AccountsManager.shared.accountForPrincipal(principal: principal) {
+                if account.keychain {
+                    let keyUtil = KeychainUtil()
+                    RunLoop.main.perform {
+                        keyUtil.password = self.password.stringValue
+                        if keyUtil.updatePassword(account.upn.lowercased()) {
+                            print("Password updated in keychain")
+                        }
+                        keyUtil.scrub()
                     }
-                    keyUtil.scrub()
                 }
+            } else if prefs.bool(for: .autoAddAccounts) {
+                let newAccount = NoMADAccount(displayName: principal, upn: principal, keychain: prefs.bool(for: .useKeychain), automatic: false, pubkeyHash: nil)
+                if prefs.bool(for: .useKeychain) {
+                    let keyUtil = KeychainUtil()
+                    RunLoop.main.perform {
+                        keyUtil.password = self.password.stringValue
+                        if keyUtil.updatePassword(principal.lowercased()) {
+                            print("Password updated in keychain")
+                        }
+                        keyUtil.scrub()
+                    }
+                }
+                AccountsManager.shared.addAccount(account: newAccount)
             }
         }
-        session?.userInfo()
     }
     
     func NoMADAuthenticationFailed(error: NoMADSessionError, description: String) {
         print("Auth failed")
         
-        for account in nomadAccounts {
+        for account in AccountsManager.shared.accounts {
             if account.upn.lowercased() == session?.userPrincipal.lowercased(),
                account.keychain {
                 let keyUtil = KeychainUtil()
@@ -360,3 +387,14 @@ extension AuthUI: PKINITCallbacks {
         }
     }
 }
+
+
+extension AuthUI: AccountUpdate {
+    
+    func updateAccounts(accounts: [NoMADAccount]) {
+        RunLoop.main.perform {
+            self.buildAccountsMenu()
+        }
+    }
+}
+
