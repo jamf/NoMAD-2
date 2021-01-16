@@ -169,6 +169,7 @@
 		1A38B33B2599AB770043DE1C /* NoMADSession+setupSessionFromPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoMADSession+setupSessionFromPrefs.swift"; sourceTree = "<group>"; };
 		1A38B345259A39220043DE1C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1A38B34B259A4B9E0043DE1C /* PKINIT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKINIT.swift; sourceTree = "<group>"; };
+		1A59FFF625AFC04F0083136C /* DSQueryable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSQueryable.swift; sourceTree = "<group>"; };
 		1A93F713259E2A320024C90F /* SignOutMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutMenuItem.swift; sourceTree = "<group>"; };
 		1A93F717259E65760024C90F /* HomeFolderMenuitem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFolderMenuitem.swift; sourceTree = "<group>"; };
 		1A93F71F259FBA900024C90F /* NoMAD 2 SSOE Sample.mobileconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "NoMAD 2 SSOE Sample.mobileconfig"; sourceTree = "<group>"; };
@@ -328,6 +329,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		1A59FFF525AFC03B0083136C /* OpenDirectory */ = {
+			isa = PBXGroup;
+			children = (
+				1A59FFF625AFC04F0083136C /* DSQueryable.swift */,
+			);
+			path = OpenDirectory;
+			sourceTree = "<group>";
+		};
 		1A93F71E259FBA690024C90F /* Sample Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +403,7 @@
 		60A5AE8C24AB776D00DD328A /* NoMAD */ = {
 			isa = PBXGroup;
 			children = (
+				1A59FFF525AFC03B0083136C /* OpenDirectory */,
 				1A93F77425A264930024C90F /* SRVLookups */,
 				1A38B2362595191B0043DE1C /* Managers */,
 				5BF418712523B0FB00E45B72 /* Models */,
