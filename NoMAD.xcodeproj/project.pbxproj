@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A14272D26025205004AD4AE /* ShareMounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A14272C26025205004AD4AE /* ShareMounter.swift */; };
-		1A14273326025D6B004AD4AE /* ShareMounterMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A14273226025D6B004AD4AE /* ShareMounterMenu.swift */; };
 		1A38B2172592AC110043DE1C /* AutomaticSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A38B2162592AC110043DE1C /* AutomaticSignIn.swift */; };
 		1A38B21D2592B0700043DE1C /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A38B21C2592B0700043DE1C /* BackgroundManager.swift */; };
 		1A38B24025951F930043DE1C /* GSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A38B23F25951F930043DE1C /* GSS.framework */; };
@@ -827,7 +825,6 @@
 			files = (
 				60A5AF1B24AC233A00DD328A /* NoMADActionMenu.swift in Sources */,
 				600A895824AC749D00E2051C /* AuthUI.swift in Sources */,
-				1A14272D26025205004AD4AE /* ShareMounter.swift in Sources */,
 				60A5AF1D24AC233F00DD328A /* NoMADAction.swift in Sources */,
 				60A5AF0C24ABDC9700DD328A /* NoMADSession.swift in Sources */,
 				60A5AF0124ABC1B900DD328A /* Notifications.swift in Sources */,
@@ -859,7 +856,6 @@
 				60A5AF0324ABCC4300DD328A /* NoADError.swift in Sources */,
 				5BF41832251D8A0600E45B72 /* SignInMenuItem.swift in Sources */,
 				600A894D24AC65E000E2051C /* AboutMenuItem.swift in Sources */,
-				1A14273326025D6B004AD4AE /* ShareMounterMenu.swift in Sources */,
 				1A93F77C25A264B10024C90F /* SRVRecord.swift in Sources */,
 				60A5AF2024AC2F7C00DD328A /* URL.swift in Sources */,
 				60A5AF1824AC1B8F00DD328A /* NoMADMenuItemBase.swift in Sources */,
@@ -1119,7 +1115,7 @@
 				CODE_SIGN_ENTITLEMENTS = NoMAD/NoMAD.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"NoMAD/Preview Content\"";
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1153,7 +1149,7 @@
 				CODE_SIGN_ENTITLEMENTS = NoMAD/NoMAD.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"NoMAD/Preview Content\"";
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				ENABLE_HARDENED_RUNTIME = YES;

@@ -114,6 +114,23 @@ class AuthenticationViewController: NSViewController {
         authorizationRequest?.doNotHandle()
     }
     
+    @IBAction func clickCert(_ sender: Any) {
+        if let currentUser = self.accountList.selectedItem?.title,
+           let certs = PKINIT.shared.returnCerts() {
+            for account in nomadAccounts {
+                if account.upn == currentUser || account.displayName == currentUser {
+                    for cert in certs {
+                        if account.pubkeyHash == cert.pubKeyHash {
+                            let panel = SFCertificatePanel()
+                            panel.beginSheet(for: self.view.window!, modalDelegate: nil, didEnd: nil, contextInfo: nil, certificates: [cert.cert], showGroup: true)
+                        }
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
     override var nibName: NSNib.Name? {
         return NSNib.Name("AuthenticationViewController")
     }
@@ -254,8 +271,13 @@ extension AuthenticationViewController: PKINITCallbacks {
     func cardChange() {
         RunLoop.main.perform {
             self.buildAccountsMenu()
-            self.certButton.isHidden = !self.cardInserted
-            self.certButton.isEnabled = self.cardInserted
+            if (PKINIT.shared.cardInserted) {
+                self.certButton.isHidden = false
+                self.certButton.isEnabled = true
+            } else {
+                self.certButton.isHidden = true
+                self.certButton.isEnabled = false
+            }
         }
     }
 }
