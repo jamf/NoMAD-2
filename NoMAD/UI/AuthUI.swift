@@ -26,6 +26,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
     @IBOutlet weak var helpButton: NSButton!
     @IBOutlet weak var infoText: NSTextField!
     @IBOutlet weak var accountsList: NSPopUpButton!
+    @IBOutlet weak var certButton: NSButton!
     
     var now = Date.init()
     var persistantTimer: Timer?
@@ -47,9 +48,12 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         accountsList.action = #selector(popUpChange)
         PKINIT.shared.delegates.append(self)
         AccountsManager.shared.delegates.append(self)
-        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.keyDown) {
-            self.keyDown(with: $0)
-            return $0
+        if (PKINIT.shared.cardInserted) {
+            self.certButton.isHidden = false
+            self.certButton.isEnabled = true
+        } else {
+            self.certButton.isHidden = true
+            self.certButton.isEnabled = false
         }
     }
     
@@ -57,28 +61,6 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         self.stopOperations()
         self.session = nil
         mainMenu.authUI = nil
-    }
-    
-    override func keyDown(with event: NSEvent) {
-        
-        switch event.charactersIgnoringModifiers {
-        case "c":
-            if let currentUser = self.accountsList.selectedItem?.title,
-               let certs = PKINIT.shared.returnCerts() {
-                for account in certAccounts {
-                    if account.upn == currentUser || account.displayName == currentUser {
-                        for cert in certs {
-                            if account.pubkeyHash == cert.pubKeyHash {
-                                let panel = SFCertificatePanel()
-                                panel.beginSheet(for: self.window!, modalDelegate: nil, didEnd: nil, contextInfo: nil, certificates: [cert.cert], showGroup: true)
-                            }
-                        }
-                    }
-                }
-            }
-        default:
-            break
-        }
     }
     
     @IBAction func clickSignIn(_ sender: Any) {
@@ -148,6 +130,22 @@ class AuthUI: NSWindowController, NSWindowDelegate {
     
     @IBAction func clickHelp(_ sender: Any) {
         
+    }
+    
+    @IBAction func clickCert(_ sender: Any) {
+        if let currentUser = self.accountsList.selectedItem?.title,
+           let certs = PKINIT.shared.returnCerts() {
+            for account in certAccounts {
+                if account.upn == currentUser || account.displayName == currentUser {
+                    for cert in certs {
+                        if account.pubkeyHash == cert.pubKeyHash {
+                            let panel = SFCertificatePanel()
+                            panel.beginSheet(for: self.window!, modalDelegate: nil, didEnd: nil, contextInfo: nil, certificates: [cert.cert], showGroup: true)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     // MARK: Utility functions
@@ -384,6 +382,13 @@ extension AuthUI: PKINITCallbacks {
     func cardChange() {
         RunLoop.main.perform {
             self.buildAccountsMenu()
+            if (PKINIT.shared.cardInserted) {
+                self.certButton.isHidden = false
+                self.certButton.isEnabled = true
+            } else {
+                self.certButton.isHidden = true
+                self.certButton.isEnabled = false
+            }
         }
     }
 }

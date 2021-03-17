@@ -24,6 +24,7 @@ class AuthenticationViewController: NSViewController {
     @IBOutlet weak var accountList: NSPopUpButton!
     @IBOutlet weak var signInButton: NSButton!
     @IBOutlet weak var spinner: NSProgressIndicator!
+    @IBOutlet weak var certButton: NSButton!
     
     var cardInserted: Bool {
         get {
@@ -53,10 +54,8 @@ class AuthenticationViewController: NSViewController {
         accountList.action = #selector(popUpChange)
         accountList.target = self
         startWatching()
-        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.keyDown) {
-            self.keyDown(with: $0)
-            return $0
-        }
+        certButton.isHidden = !cardInserted
+        certButton.isEnabled = cardInserted
     }
 
     @IBAction func clickSignIn(_ sender: Any) {
@@ -117,28 +116,6 @@ class AuthenticationViewController: NSViewController {
     
     override var nibName: NSNib.Name? {
         return NSNib.Name("AuthenticationViewController")
-    }
-    
-    override func keyDown(with event: NSEvent) {
-        
-        switch event.charactersIgnoringModifiers {
-        case "c":
-            if let currentUser = self.accountList.selectedItem?.title,
-               let certs = PKINIT.shared.returnCerts() {
-                for account in nomadAccounts {
-                    if account.upn == currentUser || account.displayName == currentUser {
-                        for cert in certs {
-                            if account.pubkeyHash == cert.pubKeyHash {
-                                let panel = SFCertificatePanel()
-                                panel.beginSheet(for: self.view.window!, modalDelegate: nil, didEnd: nil, contextInfo: nil, certificates: [cert.cert], showGroup: true)
-                            }
-                        }
-                    }
-                }
-            }
-        default:
-            break
-        }
     }
     
     private func startWatching() {
@@ -277,6 +254,8 @@ extension AuthenticationViewController: PKINITCallbacks {
     func cardChange() {
         RunLoop.main.perform {
             self.buildAccountsMenu()
+            self.certButton.isHidden = !self.cardInserted
+            self.certButton.isEnabled = self.cardInserted
         }
     }
 }

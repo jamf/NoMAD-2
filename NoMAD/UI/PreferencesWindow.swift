@@ -29,7 +29,8 @@ class PreferencesWindow: NSWindowController, NSWindowDelegate {
     @IBOutlet weak var UseKeychain: NSButton!
     @IBOutlet weak var RenewTickets: NSButton!
     @IBOutlet weak var ShowHome: NSButton!
-
+    @IBOutlet weak var passwordSyncList: NSPopUpButton!
+    
     @objc override var windowNibName: NSNib.Name {
         return NSNib.Name("PreferencesWindow")
     }
@@ -40,6 +41,10 @@ class PreferencesWindow: NSWindowController, NSWindowDelegate {
         super.windowDidLoad()
         self.window?.center()
         self.disableManagedPrefs()
+        passwordSyncList.removeAllItems()
+        for account in AccountsManager.shared.accounts {
+            passwordSyncList.addItem(withTitle: account.displayName)
+        }
     }
 
     func windowShouldClose(_ sender: NSWindow) -> Bool {

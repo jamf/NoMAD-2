@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="accountList" destination="HEK-ty-Y8g" id="caI-rE-iDQ"/>
                 <outlet property="cancelButton" destination="25N-Pw-ueR" id="m7h-yf-aDP"/>
+                <outlet property="certButton" destination="5Rp-9j-Kdy" id="g37-OA-yTg"/>
                 <outlet property="logo" destination="8se-QG-0OO" id="7zU-hw-sWH"/>
                 <outlet property="password" destination="D7g-qU-c5J" id="xt2-6W-Mkc"/>
                 <outlet property="passwordField" destination="aoo-QE-ZbT" id="zw4-43-hJr"/>
@@ -123,6 +124,14 @@ DQ
                     <rect key="frame" x="215" y="14" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </progressIndicator>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Rp-9j-Kdy">
+                    <rect key="frame" x="91" y="5" width="75" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Cert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bxs-Hm-jIc">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="VFQ-in-O2u" firstAttribute="top" secondItem="HEK-ty-Y8g" secondAttribute="top" id="26c-iq-90B"/>

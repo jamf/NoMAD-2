@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A14272D26025205004AD4AE /* ShareMounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A14272C26025205004AD4AE /* ShareMounter.swift */; };
+		1A14273326025D6B004AD4AE /* ShareMounterMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A14273226025D6B004AD4AE /* ShareMounterMenu.swift */; };
 		1A38B2172592AC110043DE1C /* AutomaticSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A38B2162592AC110043DE1C /* AutomaticSignIn.swift */; };
 		1A38B21D2592B0700043DE1C /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A38B21C2592B0700043DE1C /* BackgroundManager.swift */; };
 		1A38B24025951F930043DE1C /* GSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A38B23F25951F930043DE1C /* GSS.framework */; };
@@ -162,6 +164,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A14272C26025205004AD4AE /* ShareMounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMounter.swift; sourceTree = "<group>"; };
+		1A14273226025D6B004AD4AE /* ShareMounterMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMounterMenu.swift; sourceTree = "<group>"; };
 		1A38B2162592AC110043DE1C /* AutomaticSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSignIn.swift; sourceTree = "<group>"; };
 		1A38B21C2592B0700043DE1C /* BackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundManager.swift; sourceTree = "<group>"; };
 		1A38B23F25951F930043DE1C /* GSS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSS.framework; path = System/Library/Frameworks/GSS.framework; sourceTree = SDKROOT; };
@@ -311,6 +315,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A14272B260251EC004AD4AE /* ShareMount */ = {
+			isa = PBXGroup;
+			children = (
+				1A14272C26025205004AD4AE /* ShareMounter.swift */,
+				1A14273226025D6B004AD4AE /* ShareMounterMenu.swift */,
+			);
+			path = ShareMount;
+			sourceTree = "<group>";
+		};
 		1A38B2152592ABB50043DE1C /* BackgroundTasks */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +416,7 @@
 		60A5AE8C24AB776D00DD328A /* NoMAD */ = {
 			isa = PBXGroup;
 			children = (
+				1A14272B260251EC004AD4AE /* ShareMount */,
 				1A59FFF525AFC03B0083136C /* OpenDirectory */,
 				1A93F77425A264930024C90F /* SRVLookups */,
 				1A38B2362595191B0043DE1C /* Managers */,
@@ -813,6 +827,7 @@
 			files = (
 				60A5AF1B24AC233A00DD328A /* NoMADActionMenu.swift in Sources */,
 				600A895824AC749D00E2051C /* AuthUI.swift in Sources */,
+				1A14272D26025205004AD4AE /* ShareMounter.swift in Sources */,
 				60A5AF1D24AC233F00DD328A /* NoMADAction.swift in Sources */,
 				60A5AF0C24ABDC9700DD328A /* NoMADSession.swift in Sources */,
 				60A5AF0124ABC1B900DD328A /* Notifications.swift in Sources */,
@@ -844,6 +859,7 @@
 				60A5AF0324ABCC4300DD328A /* NoADError.swift in Sources */,
 				5BF41832251D8A0600E45B72 /* SignInMenuItem.swift in Sources */,
 				600A894D24AC65E000E2051C /* AboutMenuItem.swift in Sources */,
+				1A14273326025D6B004AD4AE /* ShareMounterMenu.swift in Sources */,
 				1A93F77C25A264B10024C90F /* SRVRecord.swift in Sources */,
 				60A5AF2024AC2F7C00DD328A /* URL.swift in Sources */,
 				60A5AF1824AC1B8F00DD328A /* NoMADMenuItemBase.swift in Sources */,

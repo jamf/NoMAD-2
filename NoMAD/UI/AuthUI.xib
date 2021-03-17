@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AuthUI" customModule="NoMAD">
             <connections>
                 <outlet property="accountsList" destination="bYl-mM-B7u" id="FAk-sa-Jsp"/>
+                <outlet property="certButton" destination="6wx-Yq-1Vn" id="6je-q5-WM7"/>
                 <outlet property="changePasswordButton" destination="GmO-NH-nKl" id="Jco-Id-1Ip"/>
                 <outlet property="helpButton" destination="Npr-7z-tC5" id="Ket-MZ-EE3"/>
                 <outlet property="logo" destination="9o2-HP-eAv" id="HC1-r9-HiV"/>
@@ -137,6 +138,17 @@ DQ
                             </menu>
                         </popUpButtonCell>
                     </popUpButton>
+                    <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wx-Yq-1Vn">
+                        <rect key="frame" x="89" y="13" width="61" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Cert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="y8k-8t-Wh4">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="clickCert:" target="-2" id="ruI-ov-ORa"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="ejO-Z3-eZo" secondAttribute="trailing" constant="20" id="2h7-YX-QyU"/>

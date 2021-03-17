@@ -42,7 +42,7 @@ The Team ID assumes you're using a signed copy of NoMAD 2. If you build the proj
 
 ## macOS Versions
 
-NoMAD will work on macOS 10.14 and greater. You'll need at least 10.15 for the Single Sign On Extension. Current betas may work on older versions, but don't expect that to last.
+NoMAD will work on macOS 10.13 and greater. You'll need at least 10.15 for the Single Sign On Extension. Current betas may work on older versions, but don't expect that to last.
 
 ## Philosophical Questions
 
@@ -83,6 +83,12 @@ Feature requests, bugs and other items can be tracked here in this repo, and we 
 You can find the latest releases on the Tags page.
 
 https://gitlab.com/Mactroll/nomad2/-/tags
+
+### Mar 17, 2021
+
+- Multiple Accounts working
+- Single User Mode
+- Better handling of certificates
 
 ### Jan 1, 2021
 
