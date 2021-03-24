@@ -1,7 +1,7 @@
 {
   "Mac" : [
     {
-      "hash" : "c06fcdb8a0cd682726a393cd82afc09f5394ca4cb9e67711cd85409eaa300565",
+      "hash" : "b92c307008b2221104e29c83575540f8540f7d7376cbd638e2387fb4f05fb66b",
       "name" : "NoMAD_ADAuth",
       "linking" : "dynamic",
       "swiftToolchainVersion" : "5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)"
@@ -13,7 +13,7 @@
   "tvOS" : [
 
   ],
-  "commitish" : "1.0.10",
+  "commitish" : "ff4905ff06a079427194953ea34c676041065cc9",
   "iOS" : [
 
   ]

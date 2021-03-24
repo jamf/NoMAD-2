@@ -487,14 +487,16 @@ public class NoMADSession : NSObject {
             arguments.append(searchTerm)
         }
         arguments.append(contentsOf: attributes)
+        myLogger.logit(.debug, message: "LDAP arguments: \(arguments)")
         let ldapResult = cliTask(command, arguments: arguments)
         
         if (ldapResult.contains("GSSAPI Error") || ldapResult.contains("Can't contact")) {
             throw NoMADSessionError.StateError
         }
         
-        let myResult = cleanLDIF(ldapResult)
+        let myResult = cleanLDIF(ldapResult, true)
         
+        myLogger.logit(.debug, message: "LDAP Result: \(myResult)")
         // TODO
         //swapPrincipals(true)
         
@@ -524,7 +526,7 @@ public class NoMADSession : NSObject {
 
         if recursiveGroupLookup {
             let attributes = ["name"]
-            let searchTerm = "(member:1.2.840.113556.1.4.1941:=" + dn.replacingOccurrences(of: "\\", with: "\\\\5c") + ")"
+            let searchTerm = "(member:1.2.840.113556.1.4.1941:=\(dn.encodeNonASCIIAsUTF8Hex()))"
             if let ldifResult = try? getLDAPInformation(attributes, searchTerm: searchTerm) {
                 groupsTemp = ""
                 for item in ldifResult {
@@ -672,10 +674,21 @@ public class NoMADSession : NSObject {
                 
                 // pack up user record
 
+                myLogger.logit(.debug, message: "Packing up user record")
+                myLogger.logit(.debug, message: "User Principal: \(userPrincipal), firstName: \(firstName), lastName: \(lastName), fullName: \(userDisplayName), shortName: \(userPrincipalShort), upn: \(UPN), email: \(userEmail), groups: \(groups), homeDirectory: \(userHome), passwordSet: \(tempPasswordSetDate), passwordExpire: \(userPasswordExpireDate), uacFlags: \(Int(userPasswordUACFlag)), passwordAging: \(passwordAging), computedExpireDate: \(userPasswordExpireDate), domain: \(domain), pso: \(pso), passwordLength: \(getComplexity(pso: pso)), ntName: \(ntName), customAttributes: \(customAttributeResults)")
+
+
                 userRecord = ADUserRecord(userPrincipal: userPrincipal,firstName: firstName, lastName: lastName, fullName: userDisplayName, shortName: userPrincipalShort, upn: UPN, email: userEmail, groups: groups, homeDirectory: userHome, passwordSet: tempPasswordSetDate, passwordExpire: userPasswordExpireDate, uacFlags: Int(userPasswordUACFlag), passwordAging: passwordAging, computedExireDate: userPasswordExpireDate, updatedLast: Date(), domain: domain, cn: cn, pso: pso, passwordLength: getComplexity(pso: pso), ntName: ntName, customAttributes: customAttributeResults)
+                
+                if userRecord != nil {
+                    delegate?.NoMADUserInformation(user: userRecord!)
+                } else {
+                    delegate?.NoMADAuthenticationFailed(error: .StateError, description: "Unable to get user record")
+                }
                 
             } else {
                 myLogger.logit(.base, message: "Unable to find user.")
+                delegate?.NoMADAuthenticationFailed(error: .StateError, description: "Unable to get user record")
             }
             
         } else {
@@ -688,13 +701,14 @@ public class NoMADSession : NSObject {
             extractedFunc(attributes, searchTerm)
         }
         
+
         // pack up the user record
         
     }
     
     // MARK: LDAP cleanup functions
     
-    fileprivate func cleanLDIF(_ ldif: String) -> [[String:String]] {
+    fileprivate func cleanLDIF(_ ldif: String, _ decodeBase64: Bool = false) -> [[String:String]] {
         //var myResult = [[String:String]]()
         
         var ldifLines: [String] = ldif.components(separatedBy: CharacterSet.newlines)
@@ -757,9 +771,16 @@ public class NoMADSession : NSObject {
                     // base64
                     let tempAttributeValue = attributeValue.substring(from: attributeValue.index(after: attributeValue.startIndex)).trim()
                     if (Data(base64Encoded: tempAttributeValue, options: NSData.Base64DecodingOptions.init(rawValue: 0)) != nil) {
-                        //attributeValue = tempAttributeValue
-                        
-                        attributeValue = String.init(data: Data.init(base64Encoded: tempAttributeValue)!, encoding: String.Encoding.utf8) ?? ""
+                        if decodeBase64 {
+                            if let data = Data(base64Encoded: tempAttributeValue),
+                               let final = String(data: data, encoding: .utf8) {
+                                attributeValue = final
+                            } else {
+                                attributeValue = tempAttributeValue
+                            }
+                        } else {
+                            attributeValue = tempAttributeValue
+                        }
                     } else {
                         attributeValue = ""
                     }
@@ -1204,10 +1225,6 @@ extension NoMADSession: NoMADUserSession {
         }
 
         getUserInformation()
-        // return the userRecord unless we came back empty
-        if userRecord != nil {
-            delegate?.NoMADUserInformation(user: userRecord!)
-        }
     }
 }
 

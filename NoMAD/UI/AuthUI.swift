@@ -93,6 +93,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
                                         }
                                         self.session = NoMADSession(domain: currentUser.userDomain() ?? "", user: currentUser.user())
                                         self.session?.setupSessionFromPrefs(prefs: self.prefs)
+                                        self.session?.delegate = self
                                         cliTask("kswitch -p \(self.session?.userPrincipal ?? "")")
                                         self.session?.userInfo()
                                     } else {
@@ -317,8 +318,8 @@ extension AuthUI: NoMADUserSessionDelegate {
         cliTask("kswitch -p \(self.session?.userPrincipal ?? "")")
         RunLoop.main.perform {
             self.window?.title = "Getting User Information"
+            self.session?.userInfo()
         }
-        session?.userInfo()
         
         if let principal = session?.userPrincipal {
             if let account = AccountsManager.shared.accountForPrincipal(principal: principal) {

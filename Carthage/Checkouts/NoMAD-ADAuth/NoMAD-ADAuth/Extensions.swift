@@ -47,31 +47,52 @@ extension String {
         return self.range(of: find, options: NSString.CompareOptions.caseInsensitive) != nil
     }
     
-    /*
-     
-     // TODO: move this to UserInfo
-    
-    func variableSwap() -> String {
-        
-        var cleanString = self
-        
-        let domain = defaults.string(forKey: Preferences.aDDomain) ?? ""
-        let fullName = defaults.string(forKey: Preferences.displayName)?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        let serial = getSerial().addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        let shortName = defaults.string(forKey: Preferences.userShortName) ?? ""
-        let upn = defaults.string(forKey: Preferences.userUPN) ?? ""
-        let email = defaults.string(forKey: Preferences.userEmail) ?? ""
-        
-        cleanString = cleanString.replacingOccurrences(of: "<<domain>>", with: domain)
-        cleanString = cleanString.replacingOccurrences(of: "<<fullname>>", with: fullName)
-        cleanString = cleanString.replacingOccurrences(of: "<<serial>>", with: serial)
-        cleanString = cleanString.replacingOccurrences(of: "<<shortname>>", with: shortName)
-        cleanString = cleanString.replacingOccurrences(of: "<<upn>>", with: upn)
-        cleanString = cleanString.replacingOccurrences(of: "<<email>>", with: email)
-        
-        return cleanString //.addingPercentEncoding(withAllowedCharacters: .alphanumerics)
-        
+    func isBase64() -> Bool {
+        if let data = Data(base64Encoded: self),
+           let _ = String(data: data, encoding: .utf8) {
+            return true
+        }
+        return false
     }
- */
     
+    func base64String() -> String? {
+        if self.isBase64() {
+            return self
+        } else {
+            return self.data(using: .utf8)?.base64EncodedString()
+        }
+    }
+    
+    func ldapFilterEscaped() -> String {
+        self.replacingOccurrences(of: "\\", with: "\\5c").replacingOccurrences(of: "*", with: "\\2a").replacingOccurrences(of: "(", with: "\\28").replacingOccurrences(of: ")", with: "\\29").replacingOccurrences(of: "/", with: "\\2f")
+    }
+    
+    func encodeNonASCIIAsUTF8Hex() -> String {
+        var result = ""
+        var startingString = self
+        
+        if self.isBase64() {
+            if let data = Data(base64Encoded: self),
+               let decodedString = String(data: data, encoding: .utf8) {
+                startingString = decodedString
+            }
+        }
+        
+        for character in startingString.ldapFilterEscaped() {
+            if character.asciiValue != nil {
+                result.append(character)
+            } else {
+                for byte in String(character).utf8 {
+                    result.append("\\" + (NSString(format:"%2X", byte) as String))
+                }
+            }
+        }
+        return result
+    }
+}
+
+extension Character {
+    var asciiValue: UInt32? {
+        return String(self).unicodeScalars.filter{$0.isASCII}.first?.value
+    }
 }

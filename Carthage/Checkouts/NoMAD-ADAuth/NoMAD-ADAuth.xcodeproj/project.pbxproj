@@ -10,6 +10,15 @@
 		1A10FCC71FAEA7B300D30727 /* NoMAD_ADAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A10FCBD1FAEA7B300D30727 /* NoMAD_ADAuth.framework */; };
 		1A10FCCC1FAEA7B300D30727 /* NoMAD_ADAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A10FCCB1FAEA7B300D30727 /* NoMAD_ADAuthTests.swift */; };
 		1A10FCCE1FAEA7B300D30727 /* NoMAD_ADAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A10FCC01FAEA7B300D30727 /* NoMAD_ADAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A93F6A1259A9B500024C90F /* ADAuthRunnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F6A0259A9B500024C90F /* ADAuthRunnerApp.swift */; };
+		1A93F6A3259A9B500024C90F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F6A2259A9B500024C90F /* ContentView.swift */; };
+		1A93F6A5259A9B520024C90F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A93F6A4259A9B520024C90F /* Assets.xcassets */; };
+		1A93F6A8259A9B520024C90F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A93F6A7259A9B520024C90F /* Preview Assets.xcassets */; };
+		1A93F6B4259A9B520024C90F /* ADAuthRunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F6B3259A9B520024C90F /* ADAuthRunnerTests.swift */; };
+		1A93F6BF259A9B520024C90F /* ADAuthRunnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F6BE259A9B520024C90F /* ADAuthRunnerUITests.swift */; };
+		1A93F6CF259ABFFF0024C90F /* NoMAD_ADAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A10FCBD1FAEA7B300D30727 /* NoMAD_ADAuth.framework */; };
+		1A93F6D0259ABFFF0024C90F /* NoMAD_ADAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A10FCBD1FAEA7B300D30727 /* NoMAD_ADAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A93F6D9259AC0530024C90F /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F6D8259AC0530024C90F /* SessionManager.swift */; };
 		1AB3EEED1FB6887C002D5F99 /* ADLDAPPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3EEEC1FB6887C002D5F99 /* ADLDAPPing.swift */; };
 		1AB3EEF31FB688A6002D5F99 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3EEF01FB688A6002D5F99 /* Extensions.swift */; };
 		1AB3EEF41FB688A6002D5F99 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3EEF11FB688A6002D5F99 /* Logger.swift */; };
@@ -42,7 +51,42 @@
 			remoteGlobalIDString = 1A10FCBC1FAEA7B300D30727;
 			remoteInfo = "NoMAD-ADAuth";
 		};
+		1A93F6B0259A9B520024C90F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A10FCB41FAEA7B200D30727 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A93F69D259A9B500024C90F;
+			remoteInfo = ADAuthRunner;
+		};
+		1A93F6BB259A9B520024C90F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A10FCB41FAEA7B200D30727 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A93F69D259A9B500024C90F;
+			remoteInfo = ADAuthRunner;
+		};
+		1A93F6D1259ABFFF0024C90F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A10FCB41FAEA7B200D30727 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A10FCBC1FAEA7B300D30727;
+			remoteInfo = "NoMAD-ADAuth";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1A93F6D3259ABFFF0024C90F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1A93F6D0259ABFFF0024C90F /* NoMAD_ADAuth.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A10FCBD1FAEA7B300D30727 /* NoMAD_ADAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NoMAD_ADAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +95,20 @@
 		1A10FCC61FAEA7B300D30727 /* NoMAD-ADAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NoMAD-ADAuthTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A10FCCB1FAEA7B300D30727 /* NoMAD_ADAuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMAD_ADAuthTests.swift; sourceTree = "<group>"; };
 		1A10FCCD1FAEA7B300D30727 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A93F69E259A9B500024C90F /* ADAuthRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ADAuthRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A93F6A0259A9B500024C90F /* ADAuthRunnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADAuthRunnerApp.swift; sourceTree = "<group>"; };
+		1A93F6A2259A9B500024C90F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1A93F6A4259A9B520024C90F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A93F6A7259A9B520024C90F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1A93F6A9259A9B520024C90F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A93F6AA259A9B520024C90F /* ADAuthRunner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ADAuthRunner.entitlements; sourceTree = "<group>"; };
+		1A93F6AF259A9B520024C90F /* ADAuthRunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ADAuthRunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A93F6B3259A9B520024C90F /* ADAuthRunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADAuthRunnerTests.swift; sourceTree = "<group>"; };
+		1A93F6B5259A9B520024C90F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A93F6BA259A9B520024C90F /* ADAuthRunnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ADAuthRunnerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A93F6BE259A9B520024C90F /* ADAuthRunnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADAuthRunnerUITests.swift; sourceTree = "<group>"; };
+		1A93F6C0259A9B520024C90F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A93F6D8259AC0530024C90F /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		1AB3EEEC1FB6887C002D5F99 /* ADLDAPPing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADLDAPPing.swift; sourceTree = "<group>"; };
 		1AB3EEF01FB688A6002D5F99 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1AB3EEF11FB688A6002D5F99 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -102,6 +160,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1A93F69B259A9B500024C90F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A93F6CF259ABFFF0024C90F /* NoMAD_ADAuth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A93F6AC259A9B520024C90F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A93F6B7259A9B520024C90F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -112,6 +192,9 @@
 				1AB3EF0A1FB689A2002D5F99 /* README.md */,
 				1A10FCBF1FAEA7B300D30727 /* NoMAD-ADAuth */,
 				1A10FCCA1FAEA7B300D30727 /* NoMAD-ADAuthTests */,
+				1A93F69F259A9B500024C90F /* ADAuthRunner */,
+				1A93F6B2259A9B520024C90F /* ADAuthRunnerTests */,
+				1A93F6BD259A9B520024C90F /* ADAuthRunnerUITests */,
 				1A10FCBE1FAEA7B300D30727 /* Products */,
 				1AB3EF321FB68BA9002D5F99 /* Frameworks */,
 			);
@@ -122,6 +205,9 @@
 			children = (
 				1A10FCBD1FAEA7B300D30727 /* NoMAD_ADAuth.framework */,
 				1A10FCC61FAEA7B300D30727 /* NoMAD-ADAuthTests.xctest */,
+				1A93F69E259A9B500024C90F /* ADAuthRunner.app */,
+				1A93F6AF259A9B520024C90F /* ADAuthRunnerTests.xctest */,
+				1A93F6BA259A9B520024C90F /* ADAuthRunnerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,6 +239,46 @@
 				1A10FCCD1FAEA7B300D30727 /* Info.plist */,
 			);
 			path = "NoMAD-ADAuthTests";
+			sourceTree = "<group>";
+		};
+		1A93F69F259A9B500024C90F /* ADAuthRunner */ = {
+			isa = PBXGroup;
+			children = (
+				1A93F6A0259A9B500024C90F /* ADAuthRunnerApp.swift */,
+				1A93F6A2259A9B500024C90F /* ContentView.swift */,
+				1A93F6A4259A9B520024C90F /* Assets.xcassets */,
+				1A93F6A9259A9B520024C90F /* Info.plist */,
+				1A93F6AA259A9B520024C90F /* ADAuthRunner.entitlements */,
+				1A93F6A6259A9B520024C90F /* Preview Content */,
+				1A93F6D8259AC0530024C90F /* SessionManager.swift */,
+			);
+			path = ADAuthRunner;
+			sourceTree = "<group>";
+		};
+		1A93F6A6259A9B520024C90F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1A93F6A7259A9B520024C90F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1A93F6B2259A9B520024C90F /* ADAuthRunnerTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A93F6B3259A9B520024C90F /* ADAuthRunnerTests.swift */,
+				1A93F6B5259A9B520024C90F /* Info.plist */,
+			);
+			path = ADAuthRunnerTests;
+			sourceTree = "<group>";
+		};
+		1A93F6BD259A9B520024C90F /* ADAuthRunnerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1A93F6BE259A9B520024C90F /* ADAuthRunnerUITests.swift */,
+				1A93F6C0259A9B520024C90F /* Info.plist */,
+			);
+			path = ADAuthRunnerUITests;
 			sourceTree = "<group>";
 		};
 		1AB3EEEB1FB68870002D5F99 /* LDAP */ = {
@@ -280,13 +406,68 @@
 			productReference = 1A10FCC61FAEA7B300D30727 /* NoMAD-ADAuthTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		1A93F69D259A9B500024C90F /* ADAuthRunner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A93F6C7259A9B520024C90F /* Build configuration list for PBXNativeTarget "ADAuthRunner" */;
+			buildPhases = (
+				1A93F69A259A9B500024C90F /* Sources */,
+				1A93F69B259A9B500024C90F /* Frameworks */,
+				1A93F69C259A9B500024C90F /* Resources */,
+				1A93F6D3259ABFFF0024C90F /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A93F6D2259ABFFF0024C90F /* PBXTargetDependency */,
+			);
+			name = ADAuthRunner;
+			productName = ADAuthRunner;
+			productReference = 1A93F69E259A9B500024C90F /* ADAuthRunner.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1A93F6AE259A9B520024C90F /* ADAuthRunnerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A93F6C8259A9B520024C90F /* Build configuration list for PBXNativeTarget "ADAuthRunnerTests" */;
+			buildPhases = (
+				1A93F6AB259A9B520024C90F /* Sources */,
+				1A93F6AC259A9B520024C90F /* Frameworks */,
+				1A93F6AD259A9B520024C90F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A93F6B1259A9B520024C90F /* PBXTargetDependency */,
+			);
+			name = ADAuthRunnerTests;
+			productName = ADAuthRunnerTests;
+			productReference = 1A93F6AF259A9B520024C90F /* ADAuthRunnerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1A93F6B9259A9B520024C90F /* ADAuthRunnerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A93F6C9259A9B520024C90F /* Build configuration list for PBXNativeTarget "ADAuthRunnerUITests" */;
+			buildPhases = (
+				1A93F6B6259A9B520024C90F /* Sources */,
+				1A93F6B7259A9B520024C90F /* Frameworks */,
+				1A93F6B8259A9B520024C90F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A93F6BC259A9B520024C90F /* PBXTargetDependency */,
+			);
+			name = ADAuthRunnerUITests;
+			productName = ADAuthRunnerUITests;
+			productReference = 1A93F6BA259A9B520024C90F /* ADAuthRunnerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1A10FCB41FAEA7B200D30727 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0910;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Orchard & Grove Inc.";
 				TargetAttributes = {
@@ -299,6 +480,20 @@
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
+					};
+					1A93F69D259A9B500024C90F = {
+						CreatedOnToolsVersion = 12.2;
+						ProvisioningStyle = Automatic;
+					};
+					1A93F6AE259A9B520024C90F = {
+						CreatedOnToolsVersion = 12.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1A93F69D259A9B500024C90F;
+					};
+					1A93F6B9259A9B520024C90F = {
+						CreatedOnToolsVersion = 12.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1A93F69D259A9B500024C90F;
 					};
 				};
 			};
@@ -316,6 +511,9 @@
 			targets = (
 				1A10FCBC1FAEA7B300D30727 /* NoMAD-ADAuth */,
 				1A10FCC51FAEA7B300D30727 /* NoMAD-ADAuthTests */,
+				1A93F69D259A9B500024C90F /* ADAuthRunner */,
+				1A93F6AE259A9B520024C90F /* ADAuthRunnerTests */,
+				1A93F6B9259A9B520024C90F /* ADAuthRunnerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -329,6 +527,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1A10FCC41FAEA7B300D30727 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A93F69C259A9B500024C90F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A93F6A8259A9B520024C90F /* Preview Assets.xcassets in Resources */,
+				1A93F6A5259A9B520024C90F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A93F6AD259A9B520024C90F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A93F6B8259A9B520024C90F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -367,6 +588,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1A93F69A259A9B500024C90F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A93F6A3259A9B500024C90F /* ContentView.swift in Sources */,
+				1A93F6A1259A9B500024C90F /* ADAuthRunnerApp.swift in Sources */,
+				1A93F6D9259AC0530024C90F /* SessionManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A93F6AB259A9B520024C90F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A93F6B4259A9B520024C90F /* ADAuthRunnerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A93F6B6259A9B520024C90F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A93F6BF259A9B520024C90F /* ADAuthRunnerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -374,6 +621,21 @@
 			isa = PBXTargetDependency;
 			target = 1A10FCBC1FAEA7B300D30727 /* NoMAD-ADAuth */;
 			targetProxy = 1A10FCC81FAEA7B300D30727 /* PBXContainerItemProxy */;
+		};
+		1A93F6B1259A9B520024C90F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A93F69D259A9B500024C90F /* ADAuthRunner */;
+			targetProxy = 1A93F6B0259A9B520024C90F /* PBXContainerItemProxy */;
+		};
+		1A93F6BC259A9B520024C90F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A93F69D259A9B500024C90F /* ADAuthRunner */;
+			targetProxy = 1A93F6BB259A9B520024C90F /* PBXContainerItemProxy */;
+		};
+		1A93F6D2259ABFFF0024C90F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A10FCBC1FAEA7B300D30727 /* NoMAD-ADAuth */;
+			targetProxy = 1A93F6D1259ABFFF0024C90F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -599,6 +861,133 @@
 			};
 			name = Release;
 		};
+		1A93F6C1259A9B520024C90F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = ADAuthRunner/ADAuthRunner.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"ADAuthRunner/Preview Content\"";
+				DEVELOPMENT_TEAM = VRPY9KHGX6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ADAuthRunner/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.ADAuthRunner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1A93F6C2259A9B520024C90F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = ADAuthRunner/ADAuthRunner.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"ADAuthRunner/Preview Content\"";
+				DEVELOPMENT_TEAM = VRPY9KHGX6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ADAuthRunner/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.ADAuthRunner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1A93F6C3259A9B520024C90F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VRPY9KHGX6;
+				INFOPLIST_FILE = ADAuthRunnerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.ADAuthRunnerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ADAuthRunner.app/Contents/MacOS/ADAuthRunner";
+			};
+			name = Debug;
+		};
+		1A93F6C4259A9B520024C90F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VRPY9KHGX6;
+				INFOPLIST_FILE = ADAuthRunnerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.ADAuthRunnerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ADAuthRunner.app/Contents/MacOS/ADAuthRunner";
+			};
+			name = Release;
+		};
+		1A93F6C5259A9B520024C90F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VRPY9KHGX6;
+				INFOPLIST_FILE = ADAuthRunnerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.ADAuthRunnerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ADAuthRunner;
+			};
+			name = Debug;
+		};
+		1A93F6C6259A9B520024C90F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VRPY9KHGX6;
+				INFOPLIST_FILE = ADAuthRunnerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.ADAuthRunnerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ADAuthRunner;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -625,6 +1014,33 @@
 			buildConfigurations = (
 				1A10FCD51FAEA7B300D30727 /* Debug */,
 				1A10FCD61FAEA7B300D30727 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A93F6C7259A9B520024C90F /* Build configuration list for PBXNativeTarget "ADAuthRunner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A93F6C1259A9B520024C90F /* Debug */,
+				1A93F6C2259A9B520024C90F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A93F6C8259A9B520024C90F /* Build configuration list for PBXNativeTarget "ADAuthRunnerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A93F6C3259A9B520024C90F /* Debug */,
+				1A93F6C4259A9B520024C90F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A93F6C9259A9B520024C90F /* Build configuration list for PBXNativeTarget "ADAuthRunnerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A93F6C5259A9B520024C90F /* Debug */,
+				1A93F6C6259A9B520024C90F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
