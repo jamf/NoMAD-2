@@ -62,7 +62,7 @@ class KerbHelper {
         
         gss_iter_creds(&min_stat, 0, &mech, { a, cred in
             
-            guard var cred = cred else {
+            guard let unwrappedCred = cred else {
                 print("end of creds")
                 sema.signal()
                 return
@@ -70,15 +70,16 @@ class KerbHelper {
             
             print("evaluating cred")
             var min_stat: OM_uint32 = 0
-            if var name = GSSCredentialCopyName(cred),
+            if var name = GSSCredentialCopyName(unwrappedCred),
                let displayName = GSSNameCreateDisplayString(name) {
-                let expiration = GSSCredentialGetLifetime(cred)
+                let expiration = GSSCredentialGetLifetime(unwrappedCred)
                 let expirationDate = Date().addingTimeInterval(TimeInterval(expiration))
                 let newTicket = KerbTicket(principal: displayName.takeRetainedValue() as String, expiration: expirationDate)
                 tickets.append(newTicket)
             } else {
                 print("ticket has expired, removing")
-                gss_destroy_cred(&min_stat, &cred)
+                var tempCred = cred
+                gss_destroy_cred(&min_stat, &tempCred)
                 print(min_stat)
             }
         })
@@ -94,7 +95,7 @@ class KerbHelper {
             kGSSICPassword: pass as AnyObject
         ]
         
-        let major = gss_aapl_initial_cred(name!, &__gss_krb5_mechanism_oid_desc, attrs as CFDictionary, &cred!, &err)
+        let major = gss_aapl_initial_cred(name!, &__gss_krb5_mechanism_oid_desc, attrs as CFDictionary, &cred, &err)
         
         if err == nil {
             return true

@@ -124,7 +124,7 @@ class PKINIT: NSObject {
             kGSSICAuthenticationContext as String: context as AnyObject,
         ]
         
-        let major = gss_aapl_initial_cred(name!, &__gss_krb5_mechanism_oid_desc, attrs as CFDictionary, &cred!, &err)
+        let major = gss_aapl_initial_cred(name!, &__gss_krb5_mechanism_oid_desc, attrs as CFDictionary, &cred, &err)
         
         running = false
         

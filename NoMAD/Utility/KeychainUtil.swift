@@ -163,21 +163,22 @@ class KeychainUtil {
     /// - Returns: `true` if the change succeeds. `false` if not.
     /// To avoid fidling with Keychain SACL on the item we simply delete the existing match and make a new entry.
     @discardableResult func updatePassword(_ name: String) -> Bool {
-        var tempStr = password
-        if (try? findPassword(name.lowercased())) != nil {
-            _ = deletePassword()
-        }
-        password = tempStr
-        tempStr = ""
-
-        myErr = setPassword(name)
-        if myErr == OSStatus(errSecSuccess) {
-            print("Updated keychain item for NoMAD2.")
-            return true
-        } else {
-            print("Unable to update keychain password.")
+        let attributes = [kSecClass: kSecClassGenericPassword,
+                          kSecAttrService: serviceName,
+                          kSecAttrAccessGroup : sharedKeychainName,
+                          kSecAttrAccount: name,
+                          kSecAttrSynchronizable: kCFBooleanTrue,
+                          ] as [String: Any]
+        let udpateAttrs = [
+            kSecValueData: password.data(using: .utf8)
+        ]  as [String: Any]
+        myErr = SecItemUpdate(attributes as CFDictionary, udpateAttrs as CFDictionary)
+        
+        if myErr != noErr {
+            print("Unable to set keychain password. Error: \(String(describing: SecCopyErrorMessageString(myErr, nil)))")
             return false
         }
+        return true
     }
 
     // delete the password from the keychain

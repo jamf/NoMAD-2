@@ -318,8 +318,9 @@ extension AuthUI: NoMADUserSessionDelegate {
         cliTask("kswitch -p \(self.session?.userPrincipal ?? "")")
         RunLoop.main.perform {
             self.window?.title = "Getting User Information"
-            self.session?.userInfo()
         }
+        
+        self.session?.userInfo()
         
         if let principal = session?.userPrincipal {
             if let account = AccountsManager.shared.accountForPrincipal(principal: principal) {

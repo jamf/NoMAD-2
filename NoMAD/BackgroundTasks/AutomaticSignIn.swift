@@ -27,7 +27,6 @@ class AutomaticSignIn {
     var workers = [AutomaticSignInWorker]()
 
     init() {
-        loadAccounts()
         signInAllAccounts()
     }
     
@@ -41,12 +40,11 @@ class AutomaticSignIn {
     
     private func signInAllAccounts() {
         let klist = KlistUtil()
-        let keyUtil = KeychainUtil()
         let princs = klist.klist().map({ $0.principal })
         let defaultPrinc = klist.defaultPrincipal
         
         workQueue.async {
-            for account in self.nomadAccounts {
+            for account in AccountsManager.shared.accounts {
             if account.keychain && account.automatic {
                 let worker = AutomaticSignInWorker(userName: account.upn)
                 self.workers.append(worker)
