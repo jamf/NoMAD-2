@@ -30,31 +30,20 @@ class AutomaticSignIn {
         signInAllAccounts()
     }
     
-    private func loadAccounts() {
-        let decoder = PropertyListDecoder.init()
-        if let accountsData = prefs.data(for: .accounts),
-           let storedAccountsList = try? decoder.decode(NoMADAccounts.self, from: accountsData) {
-            self.nomadAccounts = storedAccountsList.accounts
-        }
-    }
-    
     private func signInAllAccounts() {
         let klist = KlistUtil()
         let princs = klist.klist().map({ $0.principal })
         let defaultPrinc = klist.defaultPrincipal
+        self.workers.removeAll()
         
-        workQueue.async {
             for account in AccountsManager.shared.accounts {
-            if account.keychain && account.automatic {
-                let worker = AutomaticSignInWorker(userName: account.upn)
-                self.workers.append(worker)
-                if princs.contains(where: { $0.lowercased() == account.upn }) {
-                    worker.getUserInfo()
-                } else {
-                    worker.auth()
-                }
+                if account.automatic {
+                    workQueue.async {
+                        let worker = AutomaticSignInWorker(userName: account.upn)
+                        worker.checkUser()
+                        self.workers.append(worker)
+                    }
             }
-        }
         }
         cliTask("kswitch -p \(defaultPrinc ?? "")")
     }
@@ -65,12 +54,38 @@ class AutomaticSignInWorker: NoMADUserSessionDelegate {
     var prefs = PrefManager()
     var userName: String
     var session: NoMADSession
+    var resolver = SRVResolver()
+    let domain: String
     
     init(userName: String) {
         self.userName = userName
-        let domain = userName.userDomain()
-        self.session = NoMADSession(domain: domain ?? "", user: userName.user())
+        domain = userName.userDomain() ?? ""
+        self.session = NoMADSession(domain: domain, user: userName.user())
         self.session.setupSessionFromPrefs(prefs: prefs)
+    }
+    
+    func checkUser() {
+        
+        let klist = KlistUtil()
+        let princs = klist.klist().map({ $0.principal })
+        
+        resolver.resolve(query: "_ldap._tcp." + domain.lowercased(), completion: { i in
+            print("SRV Response for: \("_ldap._tcp." + self.domain)")
+            switch i {
+            case .success(let result):
+                if result.SRVRecords.count > 0 {
+                    if princs.contains(where: { $0.lowercased() == self.userName }) {
+                    self.getUserInfo()
+                } else {
+                    self.auth()
+                }
+                } else {
+                    print("No SRV Records found")
+                }
+            case .failure(let error):
+                print("No DNS results for domain \(self.domain), unable to automatically login. Error: \(error)")
+            }
+        })
     }
     
     func auth() {

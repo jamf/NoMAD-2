@@ -21,6 +21,7 @@ class BackGroundManager {
     init() {
         setupAutomaticSignIn()
         PKINIT.shared.startWatching()
+        nw.setup()
     }
     
     @objc func processAutomaticSignIn() {

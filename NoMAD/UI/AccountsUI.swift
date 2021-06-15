@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import SecurityInterface.SFCertificatePanel
 
 class AccountsUI: NSWindowController, NSWindowDelegate {
     
@@ -34,6 +35,8 @@ class AccountsUI: NSWindowController, NSWindowDelegate {
         accountTable.reloadData()
         certButton.isHidden = !PKINIT.shared.cardInserted
         PKINIT.shared.delegates.append(self)
+        accountTable.target = self
+        //accountTable.doubleAction = #selector(tableViewDoubleClick)
     }
     
     func windowWillClose(_ notification: Notification) {
@@ -63,6 +66,22 @@ class AccountsUI: NSWindowController, NSWindowDelegate {
         AccountsManager.shared.accounts[accountTable.selectedRow].upn = sender.stringValue
         AccountsManager.shared.saveAccounts()
     }
+    
+    @IBAction func certButton(_ sender: Any) {
+        if let certs = PKINIT.shared.returnCerts() {
+            let certsMapped = certs.map({$0.cert})
+            let panel = SFCertificatePanel()
+            panel.beginSheet(for: self.window!, modalDelegate: nil, didEnd: nil, contextInfo: nil, certificates: certsMapped, showGroup: false)
+             }
+         }
+    
+    @IBAction func showPicker(_ sender: Any) {
+        showIDPicker()
+    }
+    
+    @objc func tableViewDoubleClick(_ sender:AnyObject) {
+        print(sender)
+    }
 }
 
 extension AccountsUI: NSTableViewDelegate, NSTableViewDataSource {
@@ -88,6 +107,9 @@ extension AccountsUI: NSTableViewDelegate, NSTableViewDataSource {
                 } else if column.identifier.rawValue == "automatic" {
                     cellView.textField?.stringValue = ""
                     cellView.textField?.addSubview(makeButton(state: user.automatic, row: row, type: .auto))
+                } else if column.identifier.rawValue == "pubkey" {
+                    cellView.textField?.stringValue = user.pubkeyHash ?? ""
+                    //cellView.textField?.addSubview(makeCertPickerButton(row: row))
                 } else {
                     cellView.textField?.stringValue = user.displayName
                 }
@@ -97,8 +119,28 @@ extension AccountsUI: NSTableViewDelegate, NSTableViewDataSource {
         return nil
     }
     
+    private func makeCertPickerButton(row: Int) -> NSButton {
+        let button = NSButton()
+        button.setButtonType(.momentaryPushIn)
+        button.frame = NSRect(x: 0, y: 0, width: 100, height: 15)
+        button.title = "Pick Cert"
+        button.tag = row
+        
+        button.action = #selector(showIDPicker)
+        return button
+    }
+    
+    @objc func showIDPicker() {
+        let picker = SFChooseIdentityPanel()
+        picker.setAlternateButtonTitle("Cancel")
+        if let certs = PKINIT.shared.returnCerts() {
+        let mapped = certs.map({$0.cert})
+            picker.beginSheet(for: self.window!, modalDelegate: nil, didEnd: nil, contextInfo: nil, identities: mapped, message: "Choose an identity for this account")
+        }
+    }
+    
     private func makeButton(state: Bool, row: Int, type: ButtonType) -> NSButton {
-        var checkBox = NSButton()
+        let checkBox = NSButton()
         checkBox.setButtonType(.switch)
         checkBox.frame = NSRect(x: 0, y: 0, width: 40, height: 15)
         checkBox.title = ""
@@ -151,6 +193,8 @@ extension AccountsUI: PKINITCallbacks {
     func cardChange() {
         RunLoop.main.perform {
             self.certButton.isHidden = !PKINIT.shared.cardInserted
+            let cols = self.accountTable.tableColumns
+            cols.last?.isHidden = !PKINIT.shared.cardInserted
         }
     }
 }

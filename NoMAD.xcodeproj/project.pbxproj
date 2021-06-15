@@ -22,6 +22,7 @@
 		1A93F77C25A264B10024C90F /* SRVRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F77B25A264B10024C90F /* SRVRecord.swift */; };
 		1A93F78025A264EF0024C90F /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F77F25A264EF0024C90F /* AccountsManager.swift */; };
 		1A93F78625A2A0E40024C90F /* DomainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F78525A2A0E40024C90F /* DomainManager.swift */; };
+		1AA84CAF2678F463004D7B13 /* NetworkWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600A895224AC73C000E2051C /* NetworkWatcher.swift */; };
 		5B17475C259D39A700C6085C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B17475B259D39A700C6085C /* AuthenticationServices.framework */; };
 		5B17475F259D39A700C6085C /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B17475E259D39A700C6085C /* AuthenticationViewController.swift */; };
 		5B174762259D39A700C6085C /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B174760259D39A700C6085C /* AuthenticationViewController.xib */; };
@@ -41,7 +42,6 @@
 		5BF41832251D8A0600E45B72 /* SignInMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF41831251D8A0600E45B72 /* SignInMenuItem.swift */; };
 		5BF41833251D8BEA00E45B72 /* AuthUI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 600A895624AC749D00E2051C /* AuthUI.xib */; };
 		5BF41835251D9E2C00E45B72 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF41834251D9E2C00E45B72 /* Date.swift */; };
-		5BF41837251DAFB900E45B72 /* NoMADSessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF41836251DAFB900E45B72 /* NoMADSessionFactory.swift */; };
 		5BF41838251DB7ED00E45B72 /* KlistUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5AEDB24ABBED600DD328A /* KlistUtil.swift */; };
 		5BF4183D251DBC4C00E45B72 /* libkrb5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF4183A251DBBFC00E45B72 /* libkrb5.tbd */; };
 		5BF4183F251DC66C00E45B72 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4183E251DC66C00E45B72 /* String.swift */; };
@@ -189,7 +189,6 @@
 		5B1747A7259D8DDE00C6085C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		5BF41831251D8A0600E45B72 /* SignInMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMenuItem.swift; sourceTree = "<group>"; };
 		5BF41834251D9E2C00E45B72 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		5BF41836251DAFB900E45B72 /* NoMADSessionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMADSessionFactory.swift; sourceTree = "<group>"; };
 		5BF41839251DBBC300E45B72 /* krb5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = krb5.h; sourceTree = "<group>"; };
 		5BF4183A251DBBFC00E45B72 /* libkrb5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libkrb5.tbd; path = usr/lib/libkrb5.tbd; sourceTree = SDKROOT; };
 		5BF4183B251DBC2B00E45B72 /* libgssapi_krb5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libgssapi_krb5.tbd; path = usr/lib/libgssapi_krb5.tbd; sourceTree = SDKROOT; };
@@ -561,7 +560,6 @@
 				60A5AF0024ABC1B900DD328A /* Notifications.swift */,
 				60A5AF0224ABCC4200DD328A /* NoADError.swift */,
 				600A895424AC73F300E2051C /* GlobalVars.swift */,
-				5BF41836251DAFB900E45B72 /* NoMADSessionFactory.swift */,
 				5BF41840251EE3E500E45B72 /* KeychainUtil.swift */,
 			);
 			path = Utility;
@@ -853,6 +851,7 @@
 				60A5AED624ABBE9900DD328A /* ShareMounter.swift in Sources */,
 				1A38B33C2599AB780043DE1C /* NoMADSession+setupSessionFromPrefs.swift in Sources */,
 				60A5AF0324ABCC4300DD328A /* NoADError.swift in Sources */,
+				1AA84CAF2678F463004D7B13 /* NetworkWatcher.swift in Sources */,
 				5BF41832251D8A0600E45B72 /* SignInMenuItem.swift in Sources */,
 				600A894D24AC65E000E2051C /* AboutMenuItem.swift in Sources */,
 				1A93F77C25A264B10024C90F /* SRVRecord.swift in Sources */,
@@ -862,7 +861,6 @@
 				1A93F718259E65760024C90F /* HomeFolderMenuitem.swift in Sources */,
 				60A5AEED24ABBED800DD328A /* CSRGen.swift in Sources */,
 				60A5AEBE24AB77FE00DD328A /* MainMenu.swift in Sources */,
-				5BF41837251DAFB900E45B72 /* NoMADSessionFactory.swift in Sources */,
 				600A894F24AC6A7100E2051C /* MenuIcons.swift in Sources */,
 				1A93F714259E2A320024C90F /* SignOutMenuItem.swift in Sources */,
 				1A93F694259A5B5F0024C90F /* PKINIT.swift in Sources */,

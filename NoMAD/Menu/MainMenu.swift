@@ -35,6 +35,7 @@ class MainMenu: NSObject, NSMenuDelegate {
         buildMenu()
         self.statusBarItem.menu = mainMenu
         UserDefaults.standard.addObserver(self, forKeyPath: PrefKeys.actionItemOnly.rawValue, options: .new, context: nil)
+        mainMenu.delegate = self
     }
     
     func buildMenu() {
@@ -73,6 +74,10 @@ class MainMenu: NSObject, NSMenuDelegate {
         }
         
         // Share Mounter Menu
+        
+        if shareMounterMenu.sharesAvilable() {
+            
+        }
         
         // Get Software + Help
         mainMenu.addItem(NSMenuItem.separator())

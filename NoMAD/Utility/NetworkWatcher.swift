@@ -31,7 +31,8 @@ class NetworkWatcher {
         if !kNetworkUpdatePending {
             kNetworkUpdateTimer = Timer.init(timeInterval: 3, repeats: false, block: {_ in
                 kNetworkUpdatePending = false
-                NotificationQueue.default.enqueue(Notification(name: Notification.Name(rawValue: kNetworkUpdateNotification)), postingStyle: .now)
+                //NotificationQueue.default.enqueue(Notification(name: Notification.Name(rawValue: kNetworkUpdateNotification)), postingStyle: .now)
+                BackGroundManager.shared.processAutomaticSignIn()
             })
 
             RunLoop.main.add(kNetworkUpdateTimer!, forMode: RunLoop.Mode.default)
@@ -50,10 +51,10 @@ class NetworkWatcher {
             CFRunLoopAddSource(CFRunLoopGetCurrent(), loop, .defaultMode)
         }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(runActions), name: NSNotification.Name(rawValue: kNetworkUpdateNotification), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(runActions), name: NSNotification.Name(rawValue: kNetworkUpdateNotification), object: nil)
     }
 
     @objc fileprivate func runActions() {
-       _ = defaults.string(forKey: Preferences.ActionNetworkChange.rawValue)?.runAction()
+            //  _ = defaults.string(forKey: Preferences.ActionNetworkChange.rawValue)?.runAction()
     }
 }
