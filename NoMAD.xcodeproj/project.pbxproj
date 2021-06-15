@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A2B7AFD2677E19E00DE7B87 /* NoMAD_ADAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2B7AFB2677E19E00DE7B87 /* NoMAD_ADAuth.framework */; };
-		1A2B7AFE2677E1C200DE7B87 /* NoMAD_ADAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2B7AFB2677E19E00DE7B87 /* NoMAD_ADAuth.framework */; };
-		1A2B7AFF2677E1C200DE7B87 /* NoMAD_ADAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2B7AFB2677E19E00DE7B87 /* NoMAD_ADAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1A38B2172592AC110043DE1C /* AutomaticSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A38B2162592AC110043DE1C /* AutomaticSignIn.swift */; };
 		1A38B21D2592B0700043DE1C /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A38B21C2592B0700043DE1C /* BackgroundManager.swift */; };
 		1A38B24025951F930043DE1C /* GSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A38B23F25951F930043DE1C /* GSS.framework */; };
@@ -23,6 +20,8 @@
 		1A93F78025A264EF0024C90F /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F77F25A264EF0024C90F /* AccountsManager.swift */; };
 		1A93F78625A2A0E40024C90F /* DomainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93F78525A2A0E40024C90F /* DomainManager.swift */; };
 		1AA84CAF2678F463004D7B13 /* NetworkWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600A895224AC73C000E2051C /* NetworkWatcher.swift */; };
+		1AA84CB226793BA3004D7B13 /* NoMAD_ADAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA84CB026793B99004D7B13 /* NoMAD_ADAuth.framework */; };
+		1AA84CB326793BA3004D7B13 /* NoMAD_ADAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA84CB026793B99004D7B13 /* NoMAD_ADAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B17475C259D39A700C6085C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B17475B259D39A700C6085C /* AuthenticationServices.framework */; };
 		5B17475F259D39A700C6085C /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B17475E259D39A700C6085C /* AuthenticationViewController.swift */; };
 		5B174762259D39A700C6085C /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B174760259D39A700C6085C /* AuthenticationViewController.xib */; };
@@ -132,7 +131,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1A2B7AFF2677E1C200DE7B87 /* NoMAD_ADAuth.framework in Embed Frameworks */,
+				1AA84CB326793BA3004D7B13 /* NoMAD_ADAuth.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,7 +162,6 @@
 /* Begin PBXFileReference section */
 		1A14272C26025205004AD4AE /* ShareMounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMounter.swift; sourceTree = "<group>"; };
 		1A14273226025D6B004AD4AE /* ShareMounterMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMounterMenu.swift; sourceTree = "<group>"; };
-		1A2B7AFB2677E19E00DE7B87 /* NoMAD_ADAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NoMAD_ADAuth.framework; sourceTree = "<group>"; };
 		1A38B2162592AC110043DE1C /* AutomaticSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSignIn.swift; sourceTree = "<group>"; };
 		1A38B21C2592B0700043DE1C /* BackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundManager.swift; sourceTree = "<group>"; };
 		1A38B23F25951F930043DE1C /* GSS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSS.framework; path = System/Library/Frameworks/GSS.framework; sourceTree = SDKROOT; };
@@ -179,6 +177,7 @@
 		1A93F77B25A264B10024C90F /* SRVRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRVRecord.swift; sourceTree = "<group>"; };
 		1A93F77F25A264EF0024C90F /* AccountsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsManager.swift; sourceTree = "<group>"; };
 		1A93F78525A2A0E40024C90F /* DomainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainManager.swift; sourceTree = "<group>"; };
+		1AA84CB026793B99004D7B13 /* NoMAD_ADAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NoMAD_ADAuth.framework; sourceTree = "<group>"; };
 		5B17475A259D39A700C6085C /* nomadssoe.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = nomadssoe.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B17475B259D39A700C6085C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		5B17475E259D39A700C6085C /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
@@ -278,7 +277,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B1747A8259D8DDE00C6085C /* CloudKit.framework in Frameworks */,
-				1A2B7AFD2677E19E00DE7B87 /* NoMAD_ADAuth.framework in Frameworks */,
 				5B17475C259D39A700C6085C /* AuthenticationServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +288,7 @@
 				1A38B24225951F9A0043DE1C /* Kerberos.framework in Frameworks */,
 				1A38B24025951F930043DE1C /* GSS.framework in Frameworks */,
 				5BF4183D251DBC4C00E45B72 /* libkrb5.tbd in Frameworks */,
-				1A2B7AFE2677E1C200DE7B87 /* NoMAD_ADAuth.framework in Frameworks */,
+				1AA84CB226793BA3004D7B13 /* NoMAD_ADAuth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +532,7 @@
 		60A5AEF424ABBF2500DD328A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1A2B7AFB2677E19E00DE7B87 /* NoMAD_ADAuth.framework */,
+				1AA84CB026793B99004D7B13 /* NoMAD_ADAuth.framework */,
 				5B1747A7259D8DDE00C6085C /* CloudKit.framework */,
 				1A38B24125951F9A0043DE1C /* Kerberos.framework */,
 				1A38B23F25951F930043DE1C /* GSS.framework */,
@@ -1114,7 +1112,7 @@
 				CODE_SIGN_ENTITLEMENTS = NoMAD/NoMAD.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"NoMAD/Preview Content\"";
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1149,7 +1147,7 @@
 				CODE_SIGN_ENTITLEMENTS = NoMAD/NoMAD.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"NoMAD/Preview Content\"";
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				ENABLE_HARDENED_RUNTIME = YES;
