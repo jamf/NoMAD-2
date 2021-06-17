@@ -81,7 +81,7 @@ class AuthenticationViewController: NSViewController {
                                         var error = ""
                                         PKINIT.shared.running = true
                                         myWorkQueue.async {
-                                            error = PKINIT.shared.authWithCert(identity: cert.identity, user: currentUser, pin: pin)
+                                            error = PKINIT.shared.authWithCert(identity: cert.identity, user: account.upn, pin: pin)
                                             if error == "" {
                                                 self.authorizationRequest?.doNotHandle()
                                             } else {
@@ -155,6 +155,21 @@ class AuthenticationViewController: NSViewController {
             if PKINIT.shared.cardInserted,
                let certs = PKINIT.shared.returnCerts() {
                 self.accountList.removeAllItems()
+                let decoder = PropertyListDecoder.init()
+                if let accountsData = prefs.sharedDefaults?.data(forKey: PrefKeys.accounts.rawValue),
+                       let storedAccountsList = try? decoder.decode(NoMADAccounts.self, from: accountsData) {
+                    for account in storedAccountsList.accounts {
+                        if account.pubkeyHash != "" {
+                            for cert in certs {
+                                if cert.pubKeyHash == account.pubkeyHash {
+                                    let tempAccount = NoMADAccount(displayName: account.displayName, upn: account.upn, keychain: false, automatic: false, pubkeyHash: cert.pubKeyHash)
+                                    self.nomadAccounts.append(tempAccount)
+                                    self.accountList.addItem(withTitle: tempAccount.displayName)
+                                }
+                            }
+                        }
+                    }
+                }
                 
                 for cert in certs {
                     let account = NoMADAccount(displayName: cert.cn, upn: cert.principal ?? cert.cn, keychain: false, automatic: false, pubkeyHash: cert.pubKeyHash)
