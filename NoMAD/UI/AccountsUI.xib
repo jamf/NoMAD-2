@@ -183,6 +183,9 @@
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <connections>
+                                                    <action selector="clickText:" target="-2" id="RbB-N9-WeH"/>
+                                                </connections>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
@@ -193,13 +196,13 @@
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Itg-LW-FGm">
                                                             <rect key="frame" x="0.0" y="1" width="82" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="V2V-8N-ZYq">
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="V2V-8N-ZYq">
                                                                 <font key="font" usesAppearanceFont="YES"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <action selector="showPicker:" target="-2" id="k4g-9Q-ZG6"/>
+                                                                <action selector="editPubKey:" target="-2" id="yca-Fv-aTX"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -250,8 +253,8 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Up7-N4-mxU">
-                        <rect key="frame" x="550" y="20" width="105" height="32"/>
-                        <buttonCell key="cell" type="push" title="Certificates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0RY-PH-zQ1">
+                        <rect key="frame" x="533" y="20" width="122" height="32"/>
+                        <buttonCell key="cell" type="push" title="Set Certificate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0RY-PH-zQ1">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>

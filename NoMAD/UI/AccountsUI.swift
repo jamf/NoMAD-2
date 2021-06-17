@@ -14,6 +14,7 @@ class AccountsUI: NSWindowController, NSWindowDelegate {
     
     var prefs = PrefManager()
     var observer: NSKeyValueObservation?
+    var certPicker: SFChooseIdentityPanel?
     
     enum ButtonType {
         case keychain, auto
@@ -36,7 +37,7 @@ class AccountsUI: NSWindowController, NSWindowDelegate {
         certButton.isHidden = !PKINIT.shared.cardInserted
         PKINIT.shared.delegates.append(self)
         accountTable.target = self
-        //accountTable.doubleAction = #selector(tableViewDoubleClick)
+        certButton.isEnabled = false
     }
     
     func windowWillClose(_ notification: Notification) {
@@ -67,21 +68,50 @@ class AccountsUI: NSWindowController, NSWindowDelegate {
         AccountsManager.shared.saveAccounts()
     }
     
+    @IBAction func editPubKey(_ sender: NSTextField) {
+        guard accountTable.selectedRow > -1 else { return }
+        AccountsManager.shared.accounts[accountTable.selectedRow].pubkeyHash = sender.stringValue
+        AccountsManager.shared.saveAccounts()
+    }
+    
     @IBAction func certButton(_ sender: Any) {
+        certPicker = SFChooseIdentityPanel()
+        certPicker?.setAlternateButtonTitle("Cancel")
         if let certs = PKINIT.shared.returnCerts() {
-            let certsMapped = certs.map({$0.cert})
-            let panel = SFCertificatePanel()
-            panel.beginSheet(for: self.window!, modalDelegate: nil, didEnd: nil, contextInfo: nil, certificates: certsMapped, showGroup: false)
-             }
-         }
+        let mapped = certs.map({$0.cert})
+            certPicker?.beginSheet(for: self.window!, modalDelegate: self, didEnd: #selector(chooseIdentitySheetDidEnd), contextInfo: nil, identities: mapped, message: "Choose an identity for this account")
+        }
+    }
     
     @IBAction func showPicker(_ sender: Any) {
         showIDPicker()
     }
-    
-    @objc func tableViewDoubleClick(_ sender:AnyObject) {
-        print(sender)
-    }
+        
+    @objc func chooseIdentitySheetDidEnd(sheet: SFChooseIdentityPanel, returnCode: NSApplication.ModalResponse, contextInfo: AnyObject?) {
+            guard let identityPanel = certPicker else {
+                return
+            }
+        certButton.isEnabled = false
+            do {
+                switch returnCode {
+                case .OK:
+                    let identity = identityPanel.identity().takeUnretainedValue()
+                    var certRef: SecCertificate?
+                    SecIdentityCopyCertificate(identity, &certRef)
+                    if let certs = PKINIT.shared.returnCerts() {
+                        for cert in certs {
+                            if cert.cert == certRef {
+                                AccountsManager.shared.accounts[self.accountTable.selectedRow].pubkeyHash = cert.pubKeyHash
+                                accountTable.reloadData()
+                                AccountsManager.shared.saveAccounts()
+                            }
+                        }
+                    }
+                default:
+                    print("Cancelled Identity Picker")
+                }
+            }
+        }
 }
 
 extension AccountsUI: NSTableViewDelegate, NSTableViewDataSource {
@@ -109,7 +139,6 @@ extension AccountsUI: NSTableViewDelegate, NSTableViewDataSource {
                     cellView.textField?.addSubview(makeButton(state: user.automatic, row: row, type: .auto))
                 } else if column.identifier.rawValue == "pubkey" {
                     cellView.textField?.stringValue = user.pubkeyHash ?? ""
-                    //cellView.textField?.addSubview(makeCertPickerButton(row: row))
                 } else {
                     cellView.textField?.stringValue = user.displayName
                 }
@@ -182,10 +211,20 @@ extension AccountsUI: NSTableViewDelegate, NSTableViewDataSource {
             AccountsManager.shared.accounts[row].displayName = text
         case "upn":
             AccountsManager.shared.accounts[row].upn = text
+        case "pubkey":
+            AccountsManager.shared.accounts[row].pubkeyHash = text
         default:
             print("other change")
         }
         AccountsManager.shared.saveAccounts()
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if accountTable.selectedRow >= 0 {
+            certButton.isEnabled = PKINIT.shared.cardInserted
+        } else {
+            certButton.isEnabled = false
+        }
     }
 }
 
@@ -195,6 +234,11 @@ extension AccountsUI: PKINITCallbacks {
             self.certButton.isHidden = !PKINIT.shared.cardInserted
             let cols = self.accountTable.tableColumns
             cols.last?.isHidden = !PKINIT.shared.cardInserted
+            if self.accountTable.selectedRow > 0 {
+                self.certButton.isEnabled = PKINIT.shared.cardInserted
+            } else {
+                self.certButton.isEnabled = false
+            }
         }
     }
 }

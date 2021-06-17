@@ -86,12 +86,12 @@ class AuthUI: NSWindowController, NSWindowDelegate {
                                 var error = ""
                                 PKINIT.shared.running = true
                                 myWorkQueue.async {
-                                    error = PKINIT.shared.authWithCert(identity: cert.identity, user: currentUser, pin: pin)
+                                    error = PKINIT.shared.authWithCert(identity: cert.identity, user: account.upn, pin: pin)
                                     if error == "" {
                                         RunLoop.main.perform {
                                             self.window?.title = "Getting User Information"
                                         }
-                                        self.session = NoMADSession(domain: currentUser.userDomain() ?? "", user: currentUser.user())
+                                        self.session = NoMADSession(domain: account.upn.userDomain() ?? "", user: account.upn.user())
                                         self.session?.setupSessionFromPrefs(prefs: self.prefs)
                                         self.session?.delegate = self
                                         cliTask("kswitch -p \(self.session?.userPrincipal ?? "")")
@@ -159,6 +159,22 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         if PKINIT.shared.cardInserted,
            let certs = PKINIT.shared.returnCerts() {
             self.accountsList.removeAllItems()
+            
+            for account in AccountsManager.shared.accounts {
+                if account.pubkeyHash != "" {
+                    for cert in certs {
+                        if cert.pubKeyHash == account.pubkeyHash {
+                            let tempAccount = NoMADAccount(displayName: account.displayName, upn: account.upn, keychain: false, automatic: false, pubkeyHash: cert.pubKeyHash)
+                            self.certAccounts.append(tempAccount)
+                            if tickets.contains(where: { $0.principal == account.upn }) {
+                                self.accountsList.addItem(withTitle: tempAccount.displayName + " ◀︎")
+                            } else {
+                                self.accountsList.addItem(withTitle: tempAccount.displayName)
+                            }
+                        }
+                    }
+                }
+            }
             
             for cert in certs {
                 let account = NoMADAccount(displayName: cert.cn, upn: cert.principal ?? cert.cn, keychain: false, automatic: false, pubkeyHash: cert.pubKeyHash)
