@@ -27,6 +27,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
     @IBOutlet weak var infoText: NSTextField!
     @IBOutlet weak var accountsList: NSPopUpButton!
     @IBOutlet weak var certButton: NSButton!
+    @IBOutlet weak var cardCerts: NSButton!
     
     var now = Date.init()
     var persistantTimer: Timer?
@@ -43,6 +44,8 @@ class AuthUI: NSWindowController, NSWindowDelegate {
     }
     
     override func windowDidLoad() {
+        cardCerts.target = self
+        cardCerts.action = #selector(toggleCardCerts)
         window?.title = prefs.string(for: .windowSignIn) ?? "Sign In"
         buildAccountsMenu()
         accountsList.action = #selector(popUpChange)
@@ -149,6 +152,10 @@ class AuthUI: NSWindowController, NSWindowDelegate {
         }
     }
     
+    @objc func toggleCardCerts() {
+        buildAccountsMenu()
+    }
+    
     // MARK: Utility functions
     
     private func buildAccountsMenu() {
@@ -176,6 +183,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
                 }
             }
             
+            if UserDefaults.standard.bool(forKey: "CardCerts") {
             for cert in certs {
                 let account = NoMADAccount(displayName: cert.cn, upn: cert.principal ?? cert.cn, keychain: false, automatic: false, pubkeyHash: cert.pubKeyHash)
                 self.certAccounts.append(account)
@@ -185,6 +193,9 @@ class AuthUI: NSWindowController, NSWindowDelegate {
                     self.accountsList.addItem(withTitle: cert.principal ?? cert.cn)
                 }
             }
+            }
+            
+            self.cardCerts.isHidden = false
             self.userName.isHidden = true
             self.accountsList.isHidden = false
             self.accountsList.isEnabled = true
@@ -403,9 +414,11 @@ extension AuthUI: PKINITCallbacks {
         RunLoop.main.perform {
             self.buildAccountsMenu()
             if (PKINIT.shared.cardInserted) {
+                self.cardCerts.isHidden = false
                 self.certButton.isHidden = false
                 self.certButton.isEnabled = true
             } else {
+                self.cardCerts.isHidden = true
                 self.certButton.isHidden = true
                 self.certButton.isEnabled = false
             }

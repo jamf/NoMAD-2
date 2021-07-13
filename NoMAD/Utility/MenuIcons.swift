@@ -61,6 +61,8 @@ class MenuIcons {
         }
         
         DistributedNotificationCenter.default.addObserver(self, selector: #selector(interfaceModeChanged), name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
+        
+        
     }
     
     @objc func interfaceModeChanged() {

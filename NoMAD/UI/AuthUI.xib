@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19115.3" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19115.3"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AuthUI" customModule="NoMAD">
             <connections>
                 <outlet property="accountsList" destination="bYl-mM-B7u" id="FAk-sa-Jsp"/>
+                <outlet property="cardCerts" destination="WZg-en-ab3" id="mDB-zl-FfD"/>
                 <outlet property="certButton" destination="6wx-Yq-1Vn" id="6je-q5-WM7"/>
                 <outlet property="changePasswordButton" destination="GmO-NH-nKl" id="Jco-Id-1Ip"/>
                 <outlet property="helpButton" destination="Npr-7z-tC5" id="Ket-MZ-EE3"/>
@@ -147,6 +148,17 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="clickCert:" target="-2" id="ruI-ov-ORa"/>
+                        </connections>
+                    </button>
+                    <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WZg-en-ab3">
+                        <rect key="frame" x="149" y="22" width="92" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Card Certs" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9oJ-dW-0fk">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="mKA-bo-pGC" name="value" keyPath="values.CardCerts" id="9Ss-8V-tn8"/>
                         </connections>
                     </button>
                 </subviews>
