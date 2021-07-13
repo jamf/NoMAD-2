@@ -176,6 +176,7 @@ class AuthenticationViewController: NSViewController {
                     self.nomadAccounts.append(account)
                     self.accountList.addItem(withTitle: cert.principal ?? cert.cn)
                 }
+                self.username.isHidden = true
                 self.accountList.isHidden = false
                 self.username.isHidden = true
                 self.accountList.isEnabled = true
@@ -196,6 +197,7 @@ class AuthenticationViewController: NSViewController {
                 for account in storedAccountsList.accounts {
                     self.accountList.addItem(withTitle: account.displayName)
                 }
+                self.username.isHidden = true
                 self.accountList.isHidden = false
                 self.accountList.isEnabled = true
                 self.username.isHidden = true
