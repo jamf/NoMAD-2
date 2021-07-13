@@ -19,13 +19,13 @@ public struct NoMAD_SessionUserObject {
 }
 
 class AutomaticSignIn {
-        
+    
     let workQueue = DispatchQueue(label: "menu.nomad.kerberos", qos: .userInitiated, attributes: [], autoreleaseFrequency: .inherit, target: nil)
-
+    
     var prefs = PrefManager()
     var nomadAccounts = [NoMADAccount]()
     var workers = [AutomaticSignInWorker]()
-
+    
     init() {
         signInAllAccounts()
     }
@@ -36,13 +36,13 @@ class AutomaticSignIn {
         let defaultPrinc = klist.defaultPrincipal
         self.workers.removeAll()
         
-            for account in AccountsManager.shared.accounts {
-                if account.automatic {
-                    workQueue.async {
-                        let worker = AutomaticSignInWorker(userName: account.upn)
-                        worker.checkUser()
-                        self.workers.append(worker)
-                    }
+        for account in AccountsManager.shared.accounts {
+            if account.automatic {
+                workQueue.async {
+                    let worker = AutomaticSignInWorker(userName: account.upn, pubkeyHash: account.pubkeyHash)
+                    worker.checkUser()
+                    self.workers.append(worker)
+                }
             }
         }
         cliTask("kswitch -p \(defaultPrinc ?? "")")
@@ -53,12 +53,14 @@ class AutomaticSignInWorker: NoMADUserSessionDelegate {
     
     var prefs = PrefManager()
     var userName: String
+    var pubkeyHash: String?
     var session: NoMADSession
     var resolver = SRVResolver()
     let domain: String
     
-    init(userName: String) {
+    init(userName: String, pubkeyHash: String?) {
         self.userName = userName
+        self.pubkeyHash = pubkeyHash
         domain = userName.userDomain() ?? ""
         self.session = NoMADSession(domain: domain, user: userName.user())
         self.session.setupSessionFromPrefs(prefs: prefs)
@@ -75,10 +77,10 @@ class AutomaticSignInWorker: NoMADUserSessionDelegate {
             case .success(let result):
                 if result.SRVRecords.count > 0 {
                     if princs.contains(where: { $0.lowercased() == self.userName }) {
-                    self.getUserInfo()
-                } else {
-                    self.auth()
-                }
+                        self.getUserInfo()
+                    } else {
+                        self.auth()
+                    }
                 } else {
                     print("No SRV Records found")
                 }
@@ -92,11 +94,27 @@ class AutomaticSignInWorker: NoMADUserSessionDelegate {
         let keyUtil = KeychainUtil()
         
         do {
-            try keyUtil.findPassword(userName.lowercased())
-            session.userPass = keyUtil.password
-            session.delegate = self
-            keyUtil.scrub()
-            session.authenticate()
+            if pubkeyHash == nil || pubkeyHash == "" {
+                try keyUtil.findPassword(userName.lowercased())
+                session.userPass = keyUtil.password
+                session.delegate = self
+                keyUtil.scrub()
+                session.authenticate()
+            } else {
+                if let certs = PKINIT.shared.returnCerts(),
+                   let pubKey = self.pubkeyHash {
+                    for cert in certs {
+                        if cert.pubKeyHash == pubKey {
+                            RunLoop.main.perform {
+                                if mainMenu.authUI == nil {
+                                    mainMenu.authUI = AuthUI()
+                                }
+                                mainMenu.authUI?.window!.forceToFrontAndFocus(nil)
+                            }
+                        }
+                    }
+                }
+            }
         } catch {
             print("unable to find keychain item for user: \(userName)")
         }
