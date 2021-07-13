@@ -185,6 +185,7 @@ class AuthUI: NSWindowController, NSWindowDelegate {
                     self.accountsList.addItem(withTitle: cert.principal ?? cert.cn)
                 }
             }
+            self.userName.isHidden = true
             self.accountsList.isHidden = false
             self.accountsList.isEnabled = true
             self.passwordLabel.stringValue = "PIN"
@@ -204,13 +205,14 @@ class AuthUI: NSWindowController, NSWindowDelegate {
                 }
             }
             self.accountsList.addItem(withTitle: "Other...")
+            self.userName.isHidden = true
             self.accountsList.isHidden = false
             self.accountsList.isEnabled = true
             popUpChange()
             return
         }
-        
         accountsList.isHidden = true
+        self.userName.isHidden = true
         if let lastUser = prefs.string(for: .lastUser),
            prefs.bool(for: .useKeychain) {
             let keyUtil = KeychainUtil()
