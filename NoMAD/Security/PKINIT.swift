@@ -114,7 +114,7 @@ class PKINIT: NSObject {
             // Fallback on earlier versions
         }
         
-        var cred: gss_cred_id_t? = gss_cred_id_t.init(bitPattern: 1)
+        var cred: gss_cred_id_t = gss_cred_id_t.init(bitPattern: 1)!
         
         var err: Unmanaged<CFError>? = nil
         let name = GSSCreateName(user as CFTypeRef, &__gss_c_nt_user_name_oid_desc, &err)

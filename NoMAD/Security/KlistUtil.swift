@@ -176,7 +176,7 @@ class KlistUtil {
                 } else {
                     print("Expired credential - ignoring.")
                     var tempCred = cred
-                    gss_destroy_cred(&min_stat1, &tempCred)
+                    gss_destroy_cred(&min_stat1, &tempCred!)
                 }
             }
             sema.signal()

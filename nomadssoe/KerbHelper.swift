@@ -79,7 +79,7 @@ class KerbHelper {
             } else {
                 print("ticket has expired, removing")
                 var tempCred = cred
-                gss_destroy_cred(&min_stat, &tempCred)
+                gss_destroy_cred(&min_stat, &tempCred!)
                 print(min_stat)
             }
         })
@@ -95,7 +95,7 @@ class KerbHelper {
             kGSSICPassword: pass as AnyObject
         ]
         
-        let major = gss_aapl_initial_cred(name!, &__gss_krb5_mechanism_oid_desc, attrs as CFDictionary, &cred, &err)
+        let major = gss_aapl_initial_cred(name!, &__gss_krb5_mechanism_oid_desc, attrs as CFDictionary, &cred!, &err)
         
         if err == nil {
             return true
