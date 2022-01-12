@@ -82,7 +82,7 @@ Feature requests, bugs and other items can be tracked here in this repo, and we 
 
 You can find the latest releases on the Tags page.
 
-https://gitlab.com/Mactroll/nomad2/-/tags
+https://github.com/jamf/NoMAD-2/releases
 
 ### Mar 17, 2021
 
