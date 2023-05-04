@@ -57,29 +57,40 @@ public func cliTask(_ command: String, arguments: [String]? = nil, waitForTermin
     // set up the NSTask instance and an NSPipe for the result
 
     let myTask = Process()
-    let myPipe = Pipe()
+    let outputPipe = Pipe()
     let myInputPipe = Pipe()
     let myErrorPipe = Pipe()
-
+    var outputString = ""
     // Setup and Launch!
 
     myTask.launchPath = commandLaunchPath
     myTask.arguments = commandPieces
-    myTask.standardOutput = myPipe
+    myTask.standardOutput = outputPipe
     myTask.standardInput = myInputPipe
     myTask.standardError = myErrorPipe
 
     myTask.launch()
+    
+    while (true) {
+        let data = outputPipe.fileHandleForReading.readData(ofLength: 1024)
+
+        if data.count <= 0 {
+            break
+        }
+
+        if let str = String(data: data, encoding: .utf8) {
+            outputString += str
+        }
+    }
+
     if waitForTermination == true {
         myTask.waitUntilExit()
     }
 
-    let data = myPipe.fileHandleForReading.readDataToEndOfFile()
     let error = myErrorPipe.fileHandleForReading.readDataToEndOfFile()
     let outputError = NSString(data: error, encoding: String.Encoding.utf8.rawValue)! as String
-    let output = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
-
-    return output + outputError
+    
+    return outputString + outputError
 }
 
 public func cliTask(_ command: String,
