@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,7 +25,7 @@
 		5B17475C259D39A700C6085C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B17475B259D39A700C6085C /* AuthenticationServices.framework */; };
 		5B17475F259D39A700C6085C /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B17475E259D39A700C6085C /* AuthenticationViewController.swift */; };
 		5B174762259D39A700C6085C /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B174760259D39A700C6085C /* AuthenticationViewController.xib */; };
-		5B174767259D39A700C6085C /* nomadssoe.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5B17475A259D39A700C6085C /* nomadssoe.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5B174767259D39A700C6085C /* nomadssoe.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5B17475A259D39A700C6085C /* nomadssoe.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5B174775259D3CC100C6085C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60A5AE9124AB776F00DD328A /* Assets.xcassets */; };
 		5B17477A259D72D300C6085C /* KerbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B174779259D72D300C6085C /* KerbHelper.swift */; };
 		5B17477E259D731800C6085C /* NSTaskWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5AEFB24ABBFA000DD328A /* NSTaskWrapper.swift */; };
@@ -136,15 +136,15 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5B174768259D39A700C6085C /* Embed App Extensions */ = {
+		5B174768259D39A700C6085C /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				5B174767259D39A700C6085C /* nomadssoe.appex in Embed App Extensions */,
+				5B174767259D39A700C6085C /* nomadssoe.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5B174794259D77ED00C6085C /* Embed Frameworks */ = {
@@ -652,7 +652,7 @@
 				60A5AE8624AB776C00DD328A /* Sources */,
 				60A5AE8724AB776C00DD328A /* Frameworks */,
 				60A5AE8824AB776C00DD328A /* Resources */,
-				5B174768259D39A700C6085C /* Embed App Extensions */,
+				5B174768259D39A700C6085C /* Embed Foundation Extensions */,
 				1A2B7AFA2677E17900DE7B87 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -707,8 +707,9 @@
 		60A5AE8224AB776C00DD328A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Orchard & Grove, Inc.";
 				TargetAttributes = {
 					5B174759259D39A700C6085C = {
@@ -939,6 +940,7 @@
 				CODE_SIGN_ENTITLEMENTS = nomadssoe/nomadssoe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -968,6 +970,7 @@
 				CODE_SIGN_ENTITLEMENTS = nomadssoe/nomadssoe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1016,6 +1019,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1023,6 +1027,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1076,6 +1081,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1083,6 +1089,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1113,6 +1120,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 14;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"NoMAD/Preview Content\"";
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1128,7 +1136,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.nomad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1148,6 +1156,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 14;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"NoMAD/Preview Content\"";
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1163,7 +1172,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = menu.nomad.nomad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1179,6 +1188,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				INFOPLIST_FILE = NoMADTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1201,6 +1211,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				INFOPLIST_FILE = NoMADTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1222,6 +1233,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				INFOPLIST_FILE = NoMADUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1242,6 +1254,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = VRPY9KHGX6;
 				INFOPLIST_FILE = NoMADUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
